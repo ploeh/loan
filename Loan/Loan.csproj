@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Address.cs" />
+    <Compile Include="Applicant.cs" />
     <Compile Include="Contact.cs" />
     <Compile Include="HouseLoanApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
