@@ -15,5 +15,7 @@ namespace Ploeh.Samples.Loan
 
         public Contact PrimaryApplicant { get; set; }
         public ICollection<Contact> AdditionalApplicants { get; private set; }
+
+        public Property Property { get; set; }
     }
 }
