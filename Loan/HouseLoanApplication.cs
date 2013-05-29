@@ -17,5 +17,8 @@ namespace Ploeh.Samples.Loan
         public ICollection<Contact> AdditionalApplicants { get; private set; }
 
         public Property Property { get; set; }
+
+        public Property CurrentProperty { get; set; }
+        public bool CurrentPropertyWillBeSoldToFinanceNewProperty { get; set; }
     }
 }
