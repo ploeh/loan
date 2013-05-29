@@ -15,6 +15,7 @@ namespace Ploeh.Samples.Loan
 
         public Applicant PrimaryApplicant { get; set; }
         public ICollection<Applicant> AdditionalApplicants { get; private set; }
+        public decimal OwnPayment { get; set; }
 
         public Property Property { get; set; }
 
