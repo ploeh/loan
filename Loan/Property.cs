@@ -9,6 +9,7 @@ namespace Ploeh.Samples.Loan
     public class Property
     {
         public Address Address { get; set; }
+        public PropertyType PropertyType { get; set; }
         public decimal Price { get; set; }
         public int Size { get; set; }
     }
