@@ -24,5 +24,6 @@ namespace Ploeh.Samples.Loan
 
         public LoanType DesiredLoanType { get; set; }
         public int DesiredTerm { get; set; }
+        public PaymentFrequency DesiredFrequency { get; set; }
     }
 }
