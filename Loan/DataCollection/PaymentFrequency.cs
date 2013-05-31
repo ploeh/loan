@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ploeh.Samples.Loan
+namespace Ploeh.Samples.Loan.DataCollection
 {
     public enum PaymentFrequency
     {
