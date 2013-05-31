@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Ploeh.Samples.Loan
 {
-    public class HouseLoanApplication
+    public class MortgageApplication
     {
-        public HouseLoanApplication()
+        public MortgageApplication()
         {
             this.AdditionalApplicants = new List<Applicant>();
         }
