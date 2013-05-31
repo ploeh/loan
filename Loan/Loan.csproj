@@ -43,6 +43,7 @@
     <Compile Include="Applicant.cs" />
     <Compile Include="Contact.cs" />
     <Compile Include="HouseLoanApplication.cs" />
+    <Compile Include="LoanType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Property.cs" />
     <Compile Include="PropertyType.cs" />

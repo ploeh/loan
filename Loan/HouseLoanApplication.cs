@@ -21,5 +21,7 @@ namespace Ploeh.Samples.Loan
 
         public Property CurrentProperty { get; set; }
         public bool CurrentPropertyWillBeSoldToFinanceNewProperty { get; set; }
+
+        public LoanType DesiredLoanType { get; set; }
     }
 }
