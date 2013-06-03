@@ -8,9 +8,26 @@ namespace Ploeh.Samples.Loan.Render
 {
     public class BulletRendering : IRendering
     {
+        private readonly string text;
+
+        public BulletRendering(string text)
+        {
+            this.text = text;
+        }
+
         public IRenderer Accept(IRenderer renderer)
         {
             return renderer.Render(this);
+        }
+
+        public static implicit operator string(BulletRendering bullet)
+        {
+            return bullet.text;
+        }
+
+        public static implicit operator BulletRendering(string text)
+        {
+            return new BulletRendering(text);
         }
     }
 }
