@@ -56,6 +56,7 @@
     <Compile Include="DataCollection\Property.cs" />
     <Compile Include="DataCollection\PropertyType.cs" />
     <Compile Include="Render\LineBreakRendering.cs" />
+    <Compile Include="Render\MarkdownRenderer.cs" />
     <Compile Include="Render\TextRendering.cs" />
   </ItemGroup>
   <ItemGroup>
