@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Loan", "Loan\Loan.csproj", "{975A23C9-8588-406D-9EA0-9120D072C40E}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "LoansPrinter", "LoansPrinter\LoansPrinter.fsproj", "{3894F495-4C97-42C1-BD50-9B7DF04211C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{975A23C9-8588-406D-9EA0-9120D072C40E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{975A23C9-8588-406D-9EA0-9120D072C40E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{975A23C9-8588-406D-9EA0-9120D072C40E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3894F495-4C97-42C1-BD50-9B7DF04211C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3894F495-4C97-42C1-BD50-9B7DF04211C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3894F495-4C97-42C1-BD50-9B7DF04211C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3894F495-4C97-42C1-BD50-9B7DF04211C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
