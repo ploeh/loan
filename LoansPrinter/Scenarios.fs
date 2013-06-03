@@ -32,3 +32,29 @@ let SingleApplicantApplyingForReasonablyPricedHouse() =
             )
         ) |>
     Render
+
+let TwoApplicantsApplyingForReasonablyPricedHouse() =
+    let application =
+        MortgageApplication(
+            PrimaryApplicant = Applicant(
+                Contact = Contact(
+                    Name = "Jane Doe",
+                    Address = Address(
+                        Street = "Main Street 1",
+                        PostalCode = "12345 Anywhere",
+                        Country = "Norway")
+                    )
+                )
+            )
+    application.AdditionalApplicants.Add(
+        Applicant(
+            Contact = Contact(
+                Name = "John Doe",
+                Address = Address(
+                    Street = "Main Street 1",
+                    PostalCode = "12345 Anywhere",
+                    Country = "Norway")
+                )
+            )
+        )
+    application |> Render

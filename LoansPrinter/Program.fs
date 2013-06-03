@@ -10,4 +10,5 @@ let PrintToFile scenario text =
 [<EntryPoint>]
 let main argv = 
     do PrintToFile "Scenario 1" (SingleApplicantApplyingForReasonablyPricedHouse())
+    do PrintToFile "Scenario 2" (TwoApplicantsApplyingForReasonablyPricedHouse())
     0

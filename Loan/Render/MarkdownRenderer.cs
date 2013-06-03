@@ -27,17 +27,17 @@ namespace Ploeh.Samples.Loan.Render
 
         public IRenderer Render(BulletRendering bullet)
         {
-            return new MarkdownRenderer(this.markdown + " -" + bullet + Environment.NewLine);
+            return new MarkdownRenderer(this.markdown + "- " + bullet + Environment.NewLine);
         }
 
         public IRenderer Render(Heading1Rendering heading1)
         {
-            return new MarkdownRenderer(this.markdown + "# " + heading1 + " #");
+            return new MarkdownRenderer(this.markdown + "# " + heading1 + " #" + Environment.NewLine);
         }
 
         public IRenderer Render(Heading2Rendering heading2)
         {
-            return new MarkdownRenderer(this.markdown + "## " + heading2 + " ##");
+            return new MarkdownRenderer(this.markdown + "## " + heading2 + " ##" + Environment.NewLine);
         }
 
         public IRenderer Render(ItalicsRendering italics)
