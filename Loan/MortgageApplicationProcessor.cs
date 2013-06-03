@@ -10,9 +10,26 @@ namespace Ploeh.Samples.Loan
 {
     public class MortgageApplicationProcessor
     {
-        IEnumerable<IRendering> ProduceOffer(MortgageApplication application)
+        private readonly ILocationProvider locationProvider;
+        private readonly ITimeProvider timeProvider;
+
+        public MortgageApplicationProcessor(
+            ILocationProvider locationProvider,
+            ITimeProvider timeProvider)
+        {
+            this.locationProvider = locationProvider;
+            this.timeProvider = timeProvider;
+        }
+
+        public IEnumerable<IRendering> ProduceOffer(MortgageApplication application)
         {
             var renderings = new List<IRendering>();
+
+            renderings.Add(
+                new TextRendering(
+                    this.locationProvider.GetCurrentLocationName() +
+                    ", " +
+                    this.timeProvider.GetCurrentTime().ToString("D")));
 
             return renderings;
         }

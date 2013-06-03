@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ILocationProvider.cs" />
+    <Compile Include="ITimeProvider.cs" />
     <Compile Include="MortgageApplicationProcessor.cs" />
     <Compile Include="Render\BoldRendering.cs" />
     <Compile Include="Render\BulletRendering.cs" />

@@ -54,5 +54,20 @@ namespace Ploeh.Samples.Loan.Render
         {
             return new MarkdownRenderer(this.markdown + text);
         }
+
+        public static implicit operator string(MarkdownRenderer markdown)
+        {
+            return markdown.markdown;
+        }
+
+        public static implicit operator MarkdownRenderer(string markdown)
+        {
+            return new MarkdownRenderer(markdown);
+        }
+
+        public override string ToString()
+        {
+            return this.markdown;
+        }
     }
 }
