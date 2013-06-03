@@ -7,7 +7,7 @@
     <ProjectGuid>{975A23C9-8588-406D-9EA0-9120D072C40E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Ploeh.Samples.Loan.DataCollection</RootNamespace>
+    <RootNamespace>Ploeh.Samples.Loan</RootNamespace>
     <AssemblyName>Ploeh.Samples.Loan</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -39,15 +39,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Render\BoldRendering.cs" />
+    <Compile Include="Render\BulletRendering.cs" />
     <Compile Include="DataCollection\Address.cs" />
     <Compile Include="DataCollection\Applicant.cs" />
     <Compile Include="DataCollection\Contact.cs" />
     <Compile Include="DataCollection\MortgageApplication.cs" />
     <Compile Include="DataCollection\LoanType.cs" />
     <Compile Include="DataCollection\PaymentFrequency.cs" />
+    <Compile Include="Render\Heading1Rendering.cs" />
+    <Compile Include="Render\Heading2Rendering.cs" />
+    <Compile Include="Render\IRenderer.cs" />
+    <Compile Include="Render\IRendering.cs" />
+    <Compile Include="Render\ItalicsRendering.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataCollection\Property.cs" />
     <Compile Include="DataCollection\PropertyType.cs" />
+    <Compile Include="Render\LineBreakRendering.cs" />
+    <Compile Include="Render\TextRendering.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataCollection\MortgageApplication.cd" />
