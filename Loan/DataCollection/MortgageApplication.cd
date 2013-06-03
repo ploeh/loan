@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Ploeh.Samples.Loan.DataCollection.MortgageApplication">
+    <Position X="8.75" Y="5.5" Width="2.75" />
+    <Members>
+      <Method Name="MortgageApplication" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAgAAARAAAAACAACAAAAAAAEAAAAAAABBAAAQAAAAA=</HashCode>
+      <FileName>DataCollection\MortgageApplication.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CurrentProperty" />
+      <Property Name="DesiredFrequency" />
+      <Property Name="DesiredLoanType" />
+      <Property Name="PrimaryApplicant" />
+      <Property Name="Property" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="AdditionalApplicants" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Ploeh.Samples.Loan.DataCollection.Applicant">
+    <Position X="5.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAABAAACAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataCollection\Applicant.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Contact" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Ploeh.Samples.Loan.DataCollection.Contact">
+    <Position X="5.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAQAAAAAAAACAAAAIAAAAAA=</HashCode>
+      <FileName>DataCollection\Contact.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Address" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Ploeh.Samples.Loan.DataCollection.Address">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAIAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>DataCollection\Address.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ploeh.Samples.Loan.DataCollection.Property">
+    <Position X="8.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAgAAAAAAAAAAAAAAAAAACAAACAAAAAAA=</HashCode>
+      <FileName>DataCollection\Property.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Address" />
+      <Property Name="PropertyType" />
+    </ShowAsAssociation>
+  </Class>
+  <Enum Name="Ploeh.Samples.Loan.DataCollection.PropertyType">
+    <Position X="13" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIASAAAAAA=</HashCode>
+      <FileName>DataCollection\PropertyType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Ploeh.Samples.Loan.DataCollection.PaymentFrequency">
+    <Position X="13" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAgA=</HashCode>
+      <FileName>DataCollection\PaymentFrequency.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Ploeh.Samples.Loan.DataCollection.LoanType">
+    <Position X="13" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataCollection\LoanType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
