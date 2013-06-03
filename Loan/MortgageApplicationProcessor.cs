@@ -30,6 +30,16 @@ namespace Ploeh.Samples.Loan
                     this.locationProvider.GetCurrentLocationName() +
                     ", " +
                     this.timeProvider.GetCurrentTime().ToString("D")));
+            renderings.Add(new LineBreakRendering());
+
+            renderings.Add(
+                new TextRendering(
+                    "Dear " +
+                    application.PrimaryApplicant.Contact.Name + ", " +
+                    application.PrimaryApplicant.Contact.Address.Street + ", " +
+                    application.PrimaryApplicant.Contact.Address.PostalCode + ", " +
+                    application.PrimaryApplicant.Contact.Address.Country));
+            renderings.Add(new LineBreakRendering());
 
             return renderings;
         }

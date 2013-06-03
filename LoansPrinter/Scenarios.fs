@@ -21,6 +21,14 @@ let Render application =
 
 let SingleApplicantApplyingForReasonablyPricedHouse() =
     MortgageApplication(
-        PrimaryApplicant = Applicant()
+        PrimaryApplicant = Applicant(
+            Contact = Contact(
+                Name = "Jane Doe",
+                Address = Address(
+                    Street = "Main Street 1",
+                    PostalCode = "12345 Anywhere",
+                    Country = "Norway")
+                )
+            )
         ) |>
     Render

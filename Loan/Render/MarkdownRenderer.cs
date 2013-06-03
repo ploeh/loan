@@ -47,7 +47,7 @@ namespace Ploeh.Samples.Loan.Render
 
         public IRenderer Render(LineBreakRendering lineBreak)
         {
-            return new MarkdownRenderer(this.markdown + Environment.NewLine);
+            return new MarkdownRenderer(this.markdown + Environment.NewLine + Environment.NewLine);
         }
 
         public IRenderer Render(TextRendering text)
