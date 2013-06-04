@@ -55,7 +55,19 @@ namespace Ploeh.Samples.Loan
                     application.PrimaryApplicant.Contact.Name + ", " +
                     application.PrimaryApplicant.Contact.Address.Street + ", " +
                     application.PrimaryApplicant.Contact.Address.PostalCode + ", " +
-                    application.PrimaryApplicant.Contact.Address.Country));
+                    application.PrimaryApplicant.Contact.Address.Country + ". "));
+            renderings.Add(new BoldRendering("Yearly income:"));
+            renderings.Add(
+                new TextRendering(
+                    " " + application.PrimaryApplicant.YearlyIncome + ". "));
+            renderings.Add(new BoldRendering("Worth:"));
+            renderings.Add(
+                new TextRendering(
+                    " " + application.PrimaryApplicant.Worth + ". "));
+            renderings.Add(new BoldRendering("Tax authority:"));
+            renderings.Add(
+                new TextRendering(
+                    " " + application.PrimaryApplicant.TaxationAuthority + "."));
             renderings.Add(new LineBreakRendering());
 
             if (application.AdditionalApplicants.Any())
@@ -70,7 +82,19 @@ namespace Ploeh.Samples.Loan
                             applicant.Contact.Name + ", " +
                             applicant.Contact.Address.Street + ", " +
                             applicant.Contact.Address.PostalCode + ", " +
-                            applicant.Contact.Address.Country));
+                            applicant.Contact.Address.Country + ". "));
+                    renderings.Add(new BoldRendering("Yearly income:"));
+                    renderings.Add(
+                        new TextRendering(
+                            " " + applicant.YearlyIncome + ". "));
+                    renderings.Add(new BoldRendering("Worth:"));
+                    renderings.Add(
+                        new TextRendering(
+                            " " + applicant.Worth + ". "));
+                    renderings.Add(new BoldRendering("Tax authority:"));
+                    renderings.Add(
+                        new TextRendering(
+                            " " + applicant.TaxationAuthority + "."));
                     renderings.Add(new LineBreakRendering());
                 }
             }

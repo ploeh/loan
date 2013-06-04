@@ -27,7 +27,7 @@ namespace Ploeh.Samples.Loan.Render
 
         public IRenderer Render(BulletRendering bullet)
         {
-            return new MarkdownRenderer(this.markdown + "- " + bullet + Environment.NewLine);
+            return new MarkdownRenderer(this.markdown + "- " + bullet);
         }
 
         public IRenderer Render(Heading1Rendering heading1)

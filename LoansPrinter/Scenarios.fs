@@ -28,7 +28,10 @@ let SingleApplicantApplyingForReasonablyPricedHouse() =
                     Street = "Main Street 1",
                     PostalCode = "12345 Anywhere",
                     Country = "Norway")
-                )
+                ),
+            YearlyIncome = 500000m,
+            Worth = 100000m,
+            TaxationAuthority = "Oslo"
             )
         ) |>
     Render
@@ -43,7 +46,10 @@ let TwoApplicantsApplyingForReasonablyPricedHouse() =
                         Street = "Main Street 1",
                         PostalCode = "12345 Anywhere",
                         Country = "Norway")
-                    )
+                    ),
+                YearlyIncome = 500000m,
+                Worth = 100000m,
+                TaxationAuthority = "Oslo"
                 )
             )
     application.AdditionalApplicants.Add(
@@ -54,7 +60,10 @@ let TwoApplicantsApplyingForReasonablyPricedHouse() =
                     Street = "Main Street 1",
                     PostalCode = "12345 Anywhere",
                     Country = "Norway")
-                )
+                ),
+                YearlyIncome = 400000m,
+                Worth = 250000m,
+                TaxationAuthority = "Oslo"
             )
         )
     application |> Render
