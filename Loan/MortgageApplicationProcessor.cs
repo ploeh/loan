@@ -25,6 +25,7 @@ namespace Ploeh.Samples.Loan
         {
             var renderings = new List<IRendering>();
 
+            // Date and location
             renderings.Add(
                 new TextRendering(
                     this.locationProvider.GetCurrentLocationName() +
@@ -32,6 +33,7 @@ namespace Ploeh.Samples.Loan
                     this.timeProvider.GetCurrentTime().ToString("D")));
             renderings.Add(new LineBreakRendering());
 
+            // Greeting
             renderings.Add(
                 new TextRendering(
                     "Dear " +
@@ -46,8 +48,10 @@ namespace Ploeh.Samples.Loan
                     "It gives us great pleasure to lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
             renderings.Add(new LineBreakRendering());
 
+            // Application details
             renderings.Add(new Heading1Rendering("Application details"));
 
+            // Primary applicant
             renderings.Add(new BoldRendering("Primary applicant:"));
             renderings.Add(
                 new TextRendering(
@@ -70,6 +74,7 @@ namespace Ploeh.Samples.Loan
                     " " + application.PrimaryApplicant.TaxationAuthority + "."));
             renderings.Add(new LineBreakRendering());
 
+            // Additional applicants
             if (application.AdditionalApplicants.Any())
             {
                 renderings.Add(new BoldRendering("Additional applicants:"));
@@ -99,6 +104,7 @@ namespace Ploeh.Samples.Loan
                 }
             }
 
+            // Self payment
             renderings.Add(new BoldRendering("Self payment:"));
             renderings.Add(new TextRendering(" " + application.SelfPayment));
             renderings.Add(new LineBreakRendering());
