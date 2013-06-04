@@ -39,11 +39,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdjustableRateAnnuityOffer.cs" />
     <Compile Include="ILocationProvider.cs" />
+    <Compile Include="InterestOnlyOffer.cs" />
     <Compile Include="IOfferService.cs" />
     <Compile Include="ITimeProvider.cs" />
     <Compile Include="MortgageApplicationProcessor.cs" />
-    <Compile Include="MortgageOffer.cs" />
+    <Compile Include="FixedRateAnnuityOffer.cs" />
     <Compile Include="Render\BoldRendering.cs" />
     <Compile Include="Render\BulletRendering.cs" />
     <Compile Include="DataCollection\Address.cs" />

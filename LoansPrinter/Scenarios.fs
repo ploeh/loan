@@ -9,7 +9,7 @@ let processor =
     MortgageApplicationProcessor(
         StubLocationProvider(),
         RealTimeProvider(),
-        StubOfferService())
+        FakeOfferService())
 
 let renderer = MarkdownRenderer()
 

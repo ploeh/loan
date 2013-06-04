@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Ploeh.Samples.Loan
 {
-    public class MortgageOffer
+    public class InterestOnlyOffer
     {
+        public int Rate { get; set; }
+        public DateTimeOffset Term { get; set; }
     }
 }

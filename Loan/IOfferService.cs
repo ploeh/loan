@@ -9,6 +9,8 @@ namespace Ploeh.Samples.Loan
 {
     public interface IOfferService
     {
-        MortgageOffer GetOffer(MortgageApplication application);
+        FixedRateAnnuityOffer GetFixedRateAnnuityOffer(MortgageApplication application);
+        AdjustableRateAnnuityOffer GetAdjustableRateAnnuityOffer(MortgageApplication application);
+        InterestOnlyOffer GetInterestOnlyOffer(MortgageApplication application);
     }
 }

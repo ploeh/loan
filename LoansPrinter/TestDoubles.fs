@@ -13,7 +13,20 @@ type RealTimeProvider() =
         member this.GetCurrentTime() =
             DateTimeOffset.Now
 
-type StubOfferService() =
+type FakeOfferService() =
     interface IOfferService with
-        member this.GetOffer(application) =
-            MortgageOffer()
+        member this.GetFixedRateAnnuityOffer(application) =
+            FixedRateAnnuityOffer(
+                Rate = 35,
+                Term = DateTimeOffset.Now.AddYears(application.DesiredTerm)
+            )
+        member this.GetAdjustableRateAnnuityOffer(application) =
+            AdjustableRateAnnuityOffer(
+                InitialRate = 21,
+                Term = DateTimeOffset.Now.AddYears(application.DesiredTerm)
+            )
+        member this.GetInterestOnlyOffer(application) =
+            InterestOnlyOffer(
+                Rate = 55,
+                Term = DateTimeOffset.Now.AddYears(1)
+            )

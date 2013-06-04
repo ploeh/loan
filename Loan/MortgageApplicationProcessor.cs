@@ -195,10 +195,70 @@ namespace Ploeh.Samples.Loan
 
             renderings.Add(new Heading1Rendering("Loan offer"));
             renderings.Add(new TextRendering("It gives us great pleasure to extend to you the following loan offer, lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
+            renderings.Add(new LineBreakRendering());
 
-            var offer = this.offerService.GetOffer(application);
+            switch (application.DesiredLoanType)
+            {
+                case LoanType.FixedRateAnnuity:
+                    var fixedRateOffer = 
+                        this.offerService.GetFixedRateAnnuityOffer(application);
+                    
+                    renderings.Add(new Heading2Rendering("Fixed rate offer"));
 
-            // Imaging that the offer is being rendered below...
+                    renderings.Add(new BoldRendering("Interest rate:"));
+                    renderings.Add(
+                        new TextRendering(
+                            " " + fixedRateOffer.Rate / 10m + " %"));
+                    renderings.Add(new LineBreakRendering());
+
+                    renderings.Add(new BoldRendering("Term:"));
+                    renderings.Add(
+                        new TextRendering(
+                            " " + fixedRateOffer.Term.ToString("D")));
+                    renderings.Add(new LineBreakRendering());
+
+                    break;
+                case LoanType.AdjustableRateAnnuity:
+                    var adjustableRateOffer =
+                        this.offerService.GetAdjustableRateAnnuityOffer(application);
+
+                    renderings.Add(new Heading2Rendering("Adjustable rate offer"));
+
+                    renderings.Add(new BoldRendering("Initial interest rate:"));
+                    renderings.Add(
+                        new TextRendering(
+                            " " + adjustableRateOffer.InitialRate / 10m + " %"));
+                    renderings.Add(new LineBreakRendering());
+
+                    renderings.Add(new BoldRendering("Term:"));
+                    renderings.Add(
+                        new TextRendering(
+                            " " + adjustableRateOffer.Term.ToString("D")));
+                    renderings.Add(new LineBreakRendering());
+
+                    break;
+                case LoanType.InterestOnly:
+                    var interestOnlyOffer =
+                        this.offerService.GetInterestOnlyOffer(application);
+
+                    renderings.Add(new Heading2Rendering("Interest only offer"));
+
+                    renderings.Add(new BoldRendering("Interest rate:"));
+                    renderings.Add(
+                        new TextRendering(
+                            " " + interestOnlyOffer.Rate / 10m + " %"));
+                    renderings.Add(new LineBreakRendering());
+
+                    renderings.Add(new BoldRendering("Term:"));
+                    renderings.Add(
+                        new TextRendering(
+                            " " + interestOnlyOffer.Term.ToString("D")));
+                    renderings.Add(new LineBreakRendering());
+
+                    break;
+                default:
+                    break;
+            }
 
             return renderings;
         }
