@@ -54,7 +54,10 @@ let SingleApplicantApplyingForReasonablyPricedHouse() =
             PropertyType = PropertyType.House,
             Price = 3500000m,
             Size = 190
-        )
+        ),
+        DesiredLoanType = LoanType.AdjustableRateAnnuity,
+        DesiredTerm = 30,
+        DesiredFrequency = PaymentFrequency.Quarterly
         ) |>
     Render
 
@@ -83,7 +86,10 @@ let TwoApplicantsApplyingForReasonablyPricedHouse() =
                 PropertyType = PropertyType.House,
                 Price = 3500000m,
                 Size = 190
-            )
+            ),
+            DesiredLoanType = LoanType.FixedRateAnnuity,
+            DesiredTerm = 20,
+            DesiredFrequency = PaymentFrequency.Quarterly
             )
     application.AdditionalApplicants.Add(
         Applicant(

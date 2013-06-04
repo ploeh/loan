@@ -165,6 +165,27 @@ namespace Ploeh.Samples.Loan
                     " " + application.Property.Size + " square meters"));
             renderings.Add(new LineBreakRendering());
 
+            // Desired loan characteristics
+            renderings.Add(new Heading2Rendering("Desired loan"));
+
+            renderings.Add(new BoldRendering("Loan type:"));
+            renderings.Add(
+                new TextRendering(
+                    " " + application.DesiredLoanType));
+            renderings.Add(new LineBreakRendering());
+
+            renderings.Add(new BoldRendering("Term:"));
+            renderings.Add(
+                new TextRendering(
+                    " " + application.DesiredTerm + " years."));
+            renderings.Add(new LineBreakRendering());
+
+            renderings.Add(new BoldRendering("Frequency:"));
+            renderings.Add(
+                new TextRendering(
+                    " " + application.DesiredFrequency));
+            renderings.Add(new LineBreakRendering());
+
             return renderings;
         }
     }
