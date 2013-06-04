@@ -104,10 +104,29 @@ namespace Ploeh.Samples.Loan
                 }
             }
 
+            // Financing sub-section
+            renderings.Add(new Heading2Rendering("Financing"));
+
             // Self payment
             renderings.Add(new BoldRendering("Self payment:"));
             renderings.Add(new TextRendering(" " + application.SelfPayment));
             renderings.Add(new LineBreakRendering());
+
+            // Current property
+            if (application.CurrentProperty != null &&
+                application.CurrentPropertyWillBeSoldToFinanceNewProperty)
+            {
+                renderings.Add(new TextRendering("Current property will be sold to finance new property."));
+                renderings.Add(new LineBreakRendering());
+
+                renderings.Add(new BoldRendering("Address:"));
+                renderings.Add(
+                    new TextRendering(
+                        " " +
+                        application.CurrentProperty.Address.Street + ", " +
+                        application.CurrentProperty.Address.PostalCode + ", " +
+                        application.CurrentProperty.Address.Country + "."));
+            }
 
             return renderings;
         }

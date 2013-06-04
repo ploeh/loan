@@ -33,7 +33,18 @@ let SingleApplicantApplyingForReasonablyPricedHouse() =
             Worth = 100000m,
             TaxationAuthority = "Oslo"
             ),
-        SelfPayment = 100000m
+        SelfPayment = 100000m,
+        CurrentProperty = Property(
+            Address = Address(
+                Street = "Main Street 1",
+                PostalCode = "12345 Anywhere",
+                Country = "Norway"
+            ),
+            PropertyType = PropertyType.House,
+            Price = 2500000m,
+            Size = 160
+        ),
+        CurrentPropertyWillBeSoldToFinanceNewProperty = true
         ) |>
     Render
 
