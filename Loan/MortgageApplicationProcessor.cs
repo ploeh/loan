@@ -125,7 +125,20 @@ namespace Ploeh.Samples.Loan
                         " " +
                         application.CurrentProperty.Address.Street + ", " +
                         application.CurrentProperty.Address.PostalCode + ", " +
-                        application.CurrentProperty.Address.Country + "."));
+                        application.CurrentProperty.Address.Country + ". "));
+                renderings.Add(new LineBreakRendering());
+
+                renderings.Add(new BoldRendering("Estimated sales price:"));
+                renderings.Add(
+                    new TextRendering(
+                        " " + application.CurrentProperty.Price));
+                renderings.Add(new LineBreakRendering());
+
+                renderings.Add(new BoldRendering("Size:"));
+                renderings.Add(
+                    new TextRendering(
+                        " " + application.CurrentProperty.Size + " square meters"));
+                renderings.Add(new LineBreakRendering());
             }
 
             return renderings;
