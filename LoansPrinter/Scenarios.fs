@@ -32,7 +32,8 @@ let SingleApplicantApplyingForReasonablyPricedHouse() =
             YearlyIncome = 500000m,
             Worth = 100000m,
             TaxationAuthority = "Oslo"
-            )
+            ),
+        SelfPayment = 100000m
         ) |>
     Render
 
@@ -50,7 +51,8 @@ let TwoApplicantsApplyingForReasonablyPricedHouse() =
                 YearlyIncome = 500000m,
                 Worth = 100000m,
                 TaxationAuthority = "Oslo"
-                )
+                ),
+            SelfPayment = 250000m
             )
     application.AdditionalApplicants.Add(
         Applicant(

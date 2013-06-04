@@ -99,6 +99,10 @@ namespace Ploeh.Samples.Loan
                 }
             }
 
+            renderings.Add(new BoldRendering("Self payment:"));
+            renderings.Add(new TextRendering(" " + application.SelfPayment));
+            renderings.Add(new LineBreakRendering());
+
             return renderings;
         }
     }
