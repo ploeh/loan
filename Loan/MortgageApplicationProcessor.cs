@@ -141,6 +141,30 @@ namespace Ploeh.Samples.Loan
                 renderings.Add(new LineBreakRendering());
             }
 
+            // Property sub-section
+            renderings.Add(new Heading2Rendering("Property"));
+
+            renderings.Add(new BoldRendering("Address:"));
+            renderings.Add(
+                new TextRendering(
+                    " " +
+                    application.Property.Address.Street + ", " +
+                    application.Property.Address.PostalCode + ", " +
+                    application.Property.Address.Country + ". "));
+            renderings.Add(new LineBreakRendering());
+
+            renderings.Add(new BoldRendering("Asking price:"));
+            renderings.Add(
+                new TextRendering(
+                    " " + application.Property.Price));
+            renderings.Add(new LineBreakRendering());
+
+            renderings.Add(new BoldRendering("Size:"));
+            renderings.Add(
+                new TextRendering(
+                    " " + application.Property.Size + " square meters"));
+            renderings.Add(new LineBreakRendering());
+
             return renderings;
         }
     }

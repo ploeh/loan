@@ -44,7 +44,17 @@ let SingleApplicantApplyingForReasonablyPricedHouse() =
             Price = 2500000m,
             Size = 160
         ),
-        CurrentPropertyWillBeSoldToFinanceNewProperty = true
+        CurrentPropertyWillBeSoldToFinanceNewProperty = true,
+        Property = Property(
+            Address = Address(
+                Street = "Side Street 10",
+                PostalCode = "67890 Somewhere",
+                Country = "Norway"
+            ),
+            PropertyType = PropertyType.House,
+            Price = 3500000m,
+            Size = 190
+        )
         ) |>
     Render
 
@@ -63,7 +73,17 @@ let TwoApplicantsApplyingForReasonablyPricedHouse() =
                 Worth = 100000m,
                 TaxationAuthority = "Oslo"
                 ),
-            SelfPayment = 250000m
+            SelfPayment = 250000m,
+            Property = Property(
+                Address = Address(
+                    Street = "Side Street 10",
+                    PostalCode = "67890 Somewhere",
+                    Country = "Norway"
+                ),
+                PropertyType = PropertyType.House,
+                Price = 3500000m,
+                Size = 190
+            )
             )
     application.AdditionalApplicants.Add(
         Applicant(
