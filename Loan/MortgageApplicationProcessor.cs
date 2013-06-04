@@ -8,7 +8,7 @@ using Ploeh.Samples.Loan.Render;
 
 namespace Ploeh.Samples.Loan
 {
-    public class MortgageApplicationProcessor
+    public class MortgageApplicationProcessor : IMortgageApplicationProcessor
     {
         private readonly ILocationProvider locationProvider;
         private readonly ITimeProvider timeProvider;
