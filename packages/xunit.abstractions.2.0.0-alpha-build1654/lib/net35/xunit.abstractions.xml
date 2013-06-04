@@ -1,0 +1,858 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>xunit.abstractions</name>
+    </assembly>
+    <members>
+        <member name="T:ReflectionAbstractionExtensions">
+            <summary>
+            This class represents utility methods needed to supplement the
+            reflection capabilities provided by the CLR
+            </summary>
+        </member>
+        <member name="M:ReflectionAbstractionExtensions.GetBindingFlags(Xunit.Abstractions.IMethodInfo)">
+            <summary>
+            Gets the binding flags for finding this method via reflection.
+            </summary>
+            <param name="methodInfo">The method to get binding flags for.</param>
+            <returns>The binding flags.</returns>
+        </member>
+        <member name="M:ReflectionAbstractionExtensions.GetBindingFlags(System.Reflection.MethodInfo)">
+            <summary>
+            Gets the binding flags for finding this method via reflection.
+            </summary>
+            <param name="methodInfo">The method to get binding flags for.</param>
+            <returns>The binding flags.</returns>
+        </member>
+        <member name="M:ReflectionAbstractionExtensions.GetCustomAttributes(Xunit.Abstractions.IAssemblyInfo,System.Type)">
+            <summary>
+            Gets all the custom attributes for the given assembly.
+            </summary>
+            <param name="assemblyInfo">The assembly</param>
+            <param name="attributeType">The type of the attribute</param>
+            <returns>The matching attributes that decorate the assembly</returns>
+        </member>
+        <member name="M:ReflectionAbstractionExtensions.GetCustomAttributes(Xunit.Abstractions.IAttributeInfo,System.Type)">
+            <summary>
+            Gets all the custom attributes for the given attribute.
+            </summary>
+            <param name="attributeInfo">The attribute</param>
+            <param name="attributeType">The type of the attribute to find</param>
+            <returns>The matching attributes that decorate the attribute</returns>
+        </member>
+        <member name="M:ReflectionAbstractionExtensions.GetCustomAttributes(Xunit.Abstractions.IMethodInfo,System.Type)">
+            <summary>
+            Gets all the custom attributes for the method that are of the given type.
+            </summary>
+            <param name="methodInfo">The method</param>
+            <param name="attributeType">The type of the attribute</param>
+            <returns>The matching attributes that decorate the method</returns>
+        </member>
+        <member name="M:ReflectionAbstractionExtensions.GetCustomAttributes(Xunit.Abstractions.ITypeInfo,System.Type)">
+            <summary>
+            Gets all the custom attributes for the given type.
+            </summary>
+            <param name="typeInfo">The type</param>
+            <param name="attributeType">The type of the attribute</param>
+            <returns>The matching attributes that decorate the type</returns>
+        </member>
+        <member name="T:Xunit.Abstractions.ITestFramework">
+            <summary>
+            Represents a test framework. There are two pieces to test frameworks: discovery and
+            execution. The two factory methods represent these two pieces.
+            </summary>
+        </member>
+        <member name="M:Xunit.Abstractions.ITestFramework.GetDiscoverer(Xunit.Abstractions.IAssemblyInfo)">
+            <summary>
+            Get a test discoverer.
+            </summary>
+            <param name="assembly">The assembly from which to discover the tests.</param>
+            <returns>The test discoverer.</returns>
+        </member>
+        <member name="M:Xunit.Abstractions.ITestFramework.GetExecutor(System.String)">
+            <summary>
+            Get a test executor.
+            </summary>
+            <param name="assemblyFileName">The file path of the assembly to run tests from.</param>
+            <returns>The test executor.</returns>
+        </member>
+        <member name="T:Xunit.Abstractions.ITestFrameworkDiscoverer">
+            <summary>
+            Represents an implementation of the discovery part of a test framework.
+            </summary>
+        </member>
+        <member name="M:Xunit.Abstractions.ITestFrameworkDiscoverer.Find(System.Boolean,Xunit.Abstractions.IMessageSink)">
+            <summary>
+            Starts the process of finding all tests in an assembly.
+            </summary>
+            <param name="includeSourceInformation">Whether to include source file information, if possible.</param>
+            <param name="messageSink">The message sink to report results back to.</param>
+        </member>
+        <member name="M:Xunit.Abstractions.ITestFrameworkDiscoverer.Find(System.String,System.Boolean,Xunit.Abstractions.IMessageSink)">
+            <summary>
+            Starts the process of finding all tests in a class.
+            </summary>
+            <param name="typeName">The fully qualified type name to find tests in.</param>
+            <param name="includeSourceInformation">Whether to include source file information, if possible.</param>
+            <param name="messageSink">The message sink to report results back to.</param>
+        </member>
+        <member name="M:Xunit.Abstractions.ITestFrameworkDiscoverer.Serialize(Xunit.Abstractions.ITestCase)">
+            <summary>
+            Serializes a test case into string form.
+            </summary>
+            <param name="testCase">The test case to be serialized.</param>
+            <returns>The serialized representation of the test case.</returns>
+        </member>
+        <member name="T:Xunit.Abstractions.ITestFrameworkExecutor">
+            <summary>
+            Represents an implementation of the execution part of a test framework.
+            </summary>
+        </member>
+        <member name="M:Xunit.Abstractions.ITestFrameworkExecutor.Deserialize(System.String)">
+            <summary>
+            Deserializes a test case.
+            </summary>
+            <param name="value">The string representation of the test case.</param>
+            <returns>The deserialized test case.</returns>
+        </member>
+        <member name="M:Xunit.Abstractions.ITestFrameworkExecutor.Run(System.Collections.Generic.IEnumerable{Xunit.Abstractions.ITestCase},Xunit.Abstractions.IMessageSink)">
+            <summary>
+            Starts the process of running tests.
+            </summary>
+            <param name="testMethods">The test methods to run; if null, all tests in the assembly are run.</param>
+            <param name="messageSink">The message sink to report results back to.</param>
+        </member>
+        <member name="T:Xunit.Abstractions.IAfterTestFinished">
+            <summary>
+            This message is sent during execution to indicate that the After method of
+            a <see cref="!:Xunit.Sdk.BeforeAfterTestAttribute"/> has completed executing.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.ITestMessage">
+            <summary>
+            This is the base interface for all test messages. A test message is a message that is
+            used to communicate the status of discovery and execution of tests. 
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IAfterTestFinished.AttributeName">
+            <summary>
+            The fully qualified type name of the <see cref="!:Xunit.Sdk.BeforeAfterTestAttribute"/>.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IAfterTestFinished.TestCase">
+            <summary>
+            The test case that this message applies to. 
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IAfterTestFinished.TestDisplayName">
+            <summary>
+            The display name to be used for this test. 
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.IAfterTestStarting">
+            <summary>
+            This message is sent during execution to indicate that the After method of
+            a <see cref="!:Xunit.Sdk.BeforeAfterTestAttribute"/> is about to execute.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IAfterTestStarting.AttributeName">
+            <summary>
+            The fully qualified type name of the <see cref="!:Xunit.Sdk.BeforeAfterTestAttribute"/>.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IAfterTestStarting.TestCase">
+            <summary>
+            The test case that this message applies to. 
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IAfterTestStarting.TestDisplayName">
+            <summary>
+            The display name to be used for this test. 
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.IBeforeTestFinished">
+            <summary>
+            This message is sent during execution to indicate that the Before method of
+            a <see cref="!:Xunit.Sdk.BeforeAfterTestAttribute"/> has completed executing.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IBeforeTestFinished.AttributeName">
+            <summary>
+            The fully qualified type name of the <see cref="!:Xunit.Sdk.BeforeAfterTestAttribute"/>.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IBeforeTestFinished.TestCase">
+            <summary>
+            The test case that this message applies to. 
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IBeforeTestFinished.TestDisplayName">
+            <summary>
+            The display name to be used for this test. 
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.IBeforeTestStarting">
+            <summary>
+            This message is sent during execution to indicate that the Before method of
+            a <see cref="!:Xunit.Sdk.BeforeAfterTestAttribute"/> is about to execute.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IBeforeTestStarting.AttributeName">
+            <summary>
+            The fully qualified type name of the <see cref="!:Xunit.Sdk.BeforeAfterTestAttribute"/>.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IBeforeTestStarting.TestCase">
+            <summary>
+            The test case that this message applies to. 
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IBeforeTestStarting.TestDisplayName">
+            <summary>
+            The display name to be used for this test. 
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.IErrorMessage">
+            <summary>
+            This message indicates that an error has occurred in the execution process. 
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IErrorMessage.ExceptionType">
+            <summary>
+            The fully-qualified type name of the exception.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IErrorMessage.Message">
+            <summary>
+            The message of the exception.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IErrorMessage.StackTrace">
+            <summary>
+            The stack trace of the exception.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.IFinishedMessage">
+            <summary>
+            This is the base message for various types of completion that can occur during the
+            various phases of execution process (e.g.,  test case, test class, test collection,
+            and assembly).
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IFinishedMessage.ExecutionTime">
+            <summary>
+            The execution time (in seconds) for this execution.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IFinishedMessage.TestsFailed">
+            <summary>
+            The number of failing tests.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IFinishedMessage.TestsRun">
+            <summary>
+            The total number of tests run.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IFinishedMessage.TestsSkipped">
+            <summary>
+            The number of skipped tests.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.ITestAssemblyFinished">
+            <summary>
+            This message indicates that the execution process has been completed for
+            the requested assembly.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.ITestAssemblyStarting">
+            <summary>
+            This message indicates that the execution process is about to start for 
+            the requested assembly.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.ITestCaseFinished">
+            <summary>
+            This message indicates that a test case has finished executing.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestCaseFinished.TestCase">
+            <summary>
+            The test case that has finished executing.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.ITestCaseStarting">
+            <summary>
+            This message indicates that a test case is about to start executing.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestCaseStarting.TestCase">
+            <summary>
+            The test case that is about to execute.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.ITestClassConstructionFinished">
+            <summary>
+            This message indicates that an instance of a test class has just been constructed.
+            Instance (non-static) methods of tests get a new instance of the test class for each
+            individual test execution; static methods do not get an instance of the test class.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestClassConstructionFinished.TestCase">
+            <summary>
+            The test case that this class was constructed for.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestClassConstructionFinished.TestDisplayName">
+            <summary>
+            The display name of the test case.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.ITestClassConstructionStarting">
+            <summary>
+            This message indicates that an instance of a test class is about to be constructed.
+            Instance (non-static) methods of tests get a new instance of the test class for each
+            individual test execution; static methods do not get an instance of the test class.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestClassConstructionStarting.TestCase">
+            <summary>
+            The test case that this class is being constructed for.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestClassConstructionStarting.TestDisplayName">
+            <summary>
+            The display name of the test case.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.ITestClassDisposeFinished">
+            <summary>
+            This message indicates that the <see cref="M:System.IDisposable.Dispose"/> method was
+            just called on the test class for the test case that just finished executing.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestClassDisposeFinished.TestCase">
+            <summary>
+            The test case that just finished executing.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestClassDisposeFinished.TestDisplayName">
+            <summary>
+            The display name of the test case.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.ITestClassDisposeStarting">
+            <summary>
+            This message indicates that the <see cref="M:System.IDisposable.Dispose"/> method is
+            about to be called on the test class for the test case that just finished executing.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestClassDisposeStarting.TestCase">
+            <summary>
+            The test case that just finished executing.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestClassDisposeStarting.TestDisplayName">
+            <summary>
+            The display name of the test case.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.ITestClassFinished">
+            <summary>
+            This message indicates that a test class has finished executing (meaning, all of the
+            test cases in this test class have finished running).
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestClassFinished.ClassName">
+            <summary>
+            The fully-qualified name of the test class.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.ITestClassStarting">
+            <summary>
+            This message indicates that a test class is about to begin running.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestClassStarting.ClassName">
+            <summary>
+            The fully-qualified name of the test class.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.ITestCollectionFinished">
+            <summary>
+            This message indicates that a test collection has just finished executing (meaning,
+            all the test classes in the collection has finished).
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.ITestCollectionStarting">
+            <summary>
+            This message indicates that a test collection has is about to start executing.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.ITestFailed">
+            <summary>
+            This message indicates that a test has failed.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.ITestResultMessage">
+            <summary>
+            This is the base interface for all individual test results (e.g., tests which
+            pass, fail, or are skipped).
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestResultMessage.ExecutionTime">
+            <summary>
+            The execution time of the test, in seconds.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestResultMessage.TestCase">
+            <summary>
+            The test case that this test is associated with.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestResultMessage.TestDisplayName">
+            <summary>
+            The display name of the test.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestFailed.ExceptionType">
+            <summary>
+            The fully-qualified type name of the exception.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestFailed.Message">
+            <summary>
+            The message of the exception.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestFailed.StackTrace">
+            <summary>
+            The stack trace of the exception.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.ITestFinished">
+            <summary>
+            This message indicates that a test has finished executing.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestFinished.TestCase">
+            <summary>
+            The test case that this test belongs to.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestFinished.TestDisplayName">
+            <summary>
+            The display name of the test.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.ITestMethodFinished">
+            <summary>
+            This message indicates that a test method has finished executing (meaning, all
+            the test cases that derived from the test method have finished).
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestMethodFinished.ClassName">
+            <summary>
+            The fully-qualified name of the test class.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestMethodFinished.MethodName">
+            <summary>
+            The name of the test method.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.ITestMethodStarting">
+            <summary>
+            This message indicates that a test method is about to begin executing.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestMethodStarting.ClassName">
+            <summary>
+            The fully-qualified name of the test class.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestMethodStarting.MethodName">
+            <summary>
+            The name of the test method.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.ITestPassed">
+            <summary>
+            Indicates that a test has passed.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.ITestSkipped">
+            <summary>
+            This message indicates that a test was skipped.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestSkipped.Reason">
+            <summary>
+            The reason given for skipping the test.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.ITestStarting">
+            <summary>
+            This message indicates that a test is about to start executing.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestStarting.TestCase">
+            <summary>
+            The test case that this test belongs to.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestStarting.TestDisplayName">
+            <summary>
+            The display name of the test.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.IParameterInfo">
+            <summary>
+            Represents information about a method parameter. The primary implementation is based on runtime
+            reflection, but may also be implemented by runner authors to provide non-reflection-based
+            test discovery (for example, AST-based runners like CodeRush or Resharper).
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IParameterInfo.Name">
+            <summary>
+            The name of the parameter.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.IReflectionParameterInfo">
+            <summary>
+            Represents a reflection-backed implementation of <see cref="T:Xunit.Abstractions.IParameterInfo"/>.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IReflectionParameterInfo.ParameterInfo">
+            <summary>
+            Gets the underlying <see cref="P:Xunit.Abstractions.IReflectionParameterInfo.ParameterInfo"/> for the parameter.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.IDiscoveryCompleteMessage">
+            <summary>
+            This message indicates that the discovery process has been completed for
+            the requested assembly.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.IMessageSink">
+            <summary>
+            Represents an endpoint for the reception of test messages.
+            </summary>
+        </member>
+        <member name="M:Xunit.Abstractions.IMessageSink.OnMessage(Xunit.Abstractions.ITestMessage)">
+            <summary>
+            Reports the presence of a message on the message bus. This method should
+            never throw exceptions.
+            </summary>
+            <param name="message">The message from the message bus</param>
+        </member>
+        <member name="T:Xunit.Abstractions.ITestCaseDiscoveryMessage">
+            <summary>
+            This message indicates that a test case had been found during the discovery process.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestCaseDiscoveryMessage.TestCase">
+            <summary>
+            The test case that was discovered.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.IAssemblyInfo">
+            <summary>
+            Represents information about an assembly. The primary implementation is based on runtime
+            reflection, but may also be implemented by runner authors to provide non-reflection-based
+            test discovery (for example, AST-based runners like CodeRush or Resharper).
+            </summary>
+        </member>
+        <member name="M:Xunit.Abstractions.IAssemblyInfo.GetCustomAttributes(System.String)">
+            <summary>
+            Gets all the custom attributes for the given assembly.
+            </summary>
+            <param name="assemblyQualifiedAttributeTypeName">The type of the attribute, in assembly-qualified form</param>
+            <returns>The matching attributes that decorate the assembly</returns>
+        </member>
+        <member name="M:Xunit.Abstractions.IAssemblyInfo.GetType(System.String)">
+            <summary>
+            Gets a <see cref="T:Xunit.Abstractions.ITypeInfo"/> for the given type.
+            </summary>
+            <param name="typeName">The fully qualified type name.</param>
+            <returns>The <see cref="T:Xunit.Abstractions.ITypeInfo"/> if the type exists, or <c>null</c> if not.</returns>
+        </member>
+        <member name="M:Xunit.Abstractions.IAssemblyInfo.GetTypes(System.Boolean)">
+            <summary>
+            Gets all the types for the assembly.
+            </summary>
+            <param name="includePrivateTypes">Set to <c>true</c> to return all types in the assembly,
+            or <c>false</c> to return only public types.</param>
+            <returns>The types in the assembly.</returns>
+        </member>
+        <member name="P:Xunit.Abstractions.IAssemblyInfo.AssemblyPath">
+            <summary>
+            Gets the on-disk location of the assembly under test. If the assembly path is not
+            known (for example, in AST-based runners), you must return <c>null</c>.
+            </summary>
+            <remarks>
+            This is used by the test framework wrappers to find the co-located unit test framework
+            assembly (f.e., xunit.dll or xunit2.dll). AST-based runners will need to directly create
+            instances of <see cref="!:Xunit.Xunit1"/> and <see cref="!:Xunit.Xunit2"/> (using the constructors that
+            support an explicit path to the test framework DLL) rather than relying on the
+            use of <see cref="!:Xunit.XunitFrontController"/>.
+            </remarks>
+        </member>
+        <member name="P:Xunit.Abstractions.IAssemblyInfo.Name">
+            <summary>
+            Gets the assembly name. May return a fully qualified name for assemblies found via
+            reflection (i.e., "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"),
+            or may return just assembly name only for assemblies found via source code introspection
+            (i.e., "mscorlib").
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.IAttributeInfo">
+            <summary>
+            Represents information about an attribute. The primary implementation is based on runtime
+            reflection, but may also be implemented by runner authors to provide non-reflection-based
+            test discovery (for example, AST-based runners like CodeRush or Resharper).
+            </summary>
+        </member>
+        <member name="M:Xunit.Abstractions.IAttributeInfo.GetConstructorArguments">
+            <summary>
+            Gets the arguments passed to the constructor.
+            </summary>
+            <returns>The constructor arguments, in order</returns>
+        </member>
+        <member name="M:Xunit.Abstractions.IAttributeInfo.GetCustomAttributes(System.String)">
+            <summary>
+            Gets all the custom attributes for the given attribute.
+            </summary>
+            <param name="assemblyQualifiedAttributeTypeName">The type of the attribute to find, in assembly-qualified form</param>
+            <returns>The matching attributes that decorate the attribute</returns>
+        </member>
+        <member name="M:Xunit.Abstractions.IAttributeInfo.GetNamedArgument``1(System.String)">
+            <summary>
+            Gets a named-argument initialized value of the attribute.
+            </summary>
+            <typeparam name="TValue">The type of the argument</typeparam>
+            <param name="argumentName">The name of the argument</param>
+            <returns>The argument value</returns>
+        </member>
+        <member name="T:Xunit.Abstractions.IMethodInfo">
+            <summary>
+            Represents information about a method. The primary implementation is based on runtime
+            reflection, but may also be implemented by runner authors to provide non-reflection-based
+            test discovery (for example, AST-based runners like CodeRush or Resharper).
+            </summary>
+        </member>
+        <member name="M:Xunit.Abstractions.IMethodInfo.GetCustomAttributes(System.String)">
+            <summary>
+            Gets all the custom attributes for the method that are of the given type.
+            </summary>
+            <param name="assemblyQualifiedAttributeTypeName">The type of the attribute, in assembly qualified form</param>
+            <returns>The matching attributes that decorate the method</returns>
+        </member>
+        <member name="M:Xunit.Abstractions.IMethodInfo.GetParameters">
+            <summary>
+            Gets information about the parameters to the method.
+            </summary>
+            <returns>The method's parameters.</returns>
+        </member>
+        <member name="P:Xunit.Abstractions.IMethodInfo.IsAbstract">
+            <summary>
+            Gets a value indicating whether the method is abstract.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IMethodInfo.IsPublic">
+            <summary>
+            Gets a value indicating whether the method is public.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IMethodInfo.IsStatic">
+            <summary>
+            Gets a value indicating whether the method is static.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IMethodInfo.Name">
+            <summary>
+            Gets the name of the method.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IMethodInfo.ReturnType">
+            <summary>
+            Gets the fully qualified type name of the return type.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IMethodInfo.Type">
+            <summary>
+            Gets a value which represents the class that this method was
+            reflected from (i.e., equivalent to MethodInfo.ReflectedType)
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.IReflectionAssemblyInfo">
+            <summary>
+            Represents a reflection-backed implementation of <see cref="T:Xunit.Abstractions.IAssemblyInfo"/>.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IReflectionAssemblyInfo.Assembly">
+            <summary>
+            Gets the underlying <see cref="P:Xunit.Abstractions.IReflectionAssemblyInfo.Assembly"/> for the assembly.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.IReflectionAttributeInfo">
+            <summary>
+            Represents a reflection-backed implementation of <see cref="T:Xunit.Abstractions.IAttributeInfo"/>.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IReflectionAttributeInfo.Attribute">
+            <summary>
+            Gets the instance of the attribute, if available.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.IReflectionMethodInfo">
+            <summary>
+            Represents a reflection-backed implementation of <see cref="T:Xunit.Abstractions.IMethodInfo"/>.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IReflectionMethodInfo.MethodInfo">
+            <summary>
+            Gets the underlying <see cref="P:Xunit.Abstractions.IReflectionMethodInfo.MethodInfo"/> for the method.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.IReflectionTypeInfo">
+            <summary>
+            Represents a reflection-backed implementation of <see cref="T:Xunit.Abstractions.ITypeInfo"/>.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.ITypeInfo">
+            <summary>
+            Represents information about a type. The primary implementation is based on runtime
+            reflection, but may also be implemented by runner authors to provide non-reflection-based
+            test discovery (for example, AST-based runners like CodeRush or Resharper).
+            </summary>
+        </member>
+        <member name="M:Xunit.Abstractions.ITypeInfo.GetCustomAttributes(System.String)">
+            <summary>
+            Gets all the custom attributes for the given type.
+            </summary>
+            <param name="assemblyQualifiedAttributeTypeName">The type of the attribute, in assembly qualified form</param>
+            <returns>The matching attributes that decorate the type</returns>
+        </member>
+        <member name="M:Xunit.Abstractions.ITypeInfo.GetMethods(System.Boolean)">
+            <summary>
+            Gets all the methods in this type.
+            </summary>
+            <param name="includePrivateMethods">Set to <c>true</c> to return all methods in the type,
+            or <c>false</c> to return only public methods.</param>
+        </member>
+        <member name="P:Xunit.Abstractions.ITypeInfo.Assembly">
+            <summary>
+            Gets the assembly this type is located in.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITypeInfo.BaseType">
+            <summary>
+            Gets the base type of the given type.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITypeInfo.Interfaces">
+            <summary>
+            Gets the interfaces implemented by the given type.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITypeInfo.IsAbstract">
+            <summary>
+            Gets a value indicating whether the type is abstract.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITypeInfo.IsSealed">
+            <summary>
+            Gets a value indicating whether the type is sealed.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITypeInfo.Name">
+            <summary>
+            Gets the fully qualified type name.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.IReflectionTypeInfo.Type">
+            <summary>
+            Gets the underlying <see cref="P:Xunit.Abstractions.IReflectionTypeInfo.Type"/> object.
+            </summary>
+        </member>
+        <member name="T:Xunit.Abstractions.ITestCase">
+            <summary>
+            Represents a single test case in the system. This test case usually represents a single test, but in
+            the case of dynamically generated data for data driven tests, the test case may actually return
+            multiple results when run.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestCase.Class">
+            <summary>
+            Gets the class that this test case is attached to.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestCase.DisplayName">
+            <summary>
+            Gets the display name of the test case.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestCase.Method">
+            <summary>
+            Gets the method associated with this test case.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestCase.SkipReason">
+            <summary>
+            Gets the display text for the reason a test is being skipped; if the test
+            is not skipped, returns null.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestCase.SourceFileLine">
+            <summary>
+            Get the source file line where the test is defined, if requested (and known).
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestCase.SourceFileName">
+            <summary>
+            Gets the source file name where the test is defined, if requested (and known).
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestCase.TestCollection">
+            <summary>
+            Gets the test collection this test case belongs to.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestCase.Traits">
+            <summary>
+            Gets the trait values associated with this test case. If
+            there are none, or the framework does not support traits,
+            this should return an empty dictionary (not <c>null</c>). This
+            dictionary must be treated as read-only.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestCase.UniqueID">
+            <summary>
+            Gets a unique identifier for the test case.
+            </summary>
+            <remarks>
+            The unique identifier for a test case should be able to discriminate
+            among test cases, even those which are varied invocations against the
+            same test method (i.e., theories). Ideally, this identifier would remain
+            stable until such time as the developer changes some fundamental part
+            of the identity (assembly, class name, test name, or test data); however,
+            the minimum stability of the identifier must at least extend across
+            multiple discoveries of the same test in the same (non-recompiled)
+            assembly.
+            </remarks>
+        </member>
+        <member name="T:Xunit.Abstractions.ITestCollection">
+            <summary>
+            Represents a group of test cases. Test collections form the basis of the parallelization in
+            xUnit.net. Test cases which are in the same test collection will not be run in parallel
+            against sibling tests, but will run in parallel against tests in other collections.
+            </summary>
+        </member>
+        <member name="P:Xunit.Abstractions.ITestCollection.DisplayName">
+            <summary>
+            The display name of the test collection.
+            </summary>
+        </member>
+    </members>
+</doc>

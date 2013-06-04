@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>xunit.abstractions</id>
+    <version>2.0.0-alpha-build1654</version>
+    <title>xUnit.net Abstractions</title>
+    <authors>James Newkirk,  Brad Wilson</authors>
+    <owners>James Newkirk,  Brad Wilson</owners>
+    <licenseUrl>http://xunit.codeplex.com/license</licenseUrl>
+    <projectUrl>http://xunit.codeplex.com/</projectUrl>
+    <iconUrl>http://download-codeplex.sec.s-msft.com/Download?ProjectName=xunit&amp;DownloadId=662625</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Common abstractions used to exchange information between xUnit.net and version-independent runners.</description>
+    <language>en-US</language>
+    <references>
+      <reference file="xunit.abstractions.dll" />
+    </references>
+  </metadata>
+</package>

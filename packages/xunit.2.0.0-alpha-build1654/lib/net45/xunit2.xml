@@ -1,0 +1,2458 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>xunit2</name>
+    </assembly>
+    <members>
+        <member name="M:ExceptionExtensions.RethrowWithNoStackTraceLoss(System.Exception)">
+            <summary>
+            Rethrows an exception object without losing the existing stack trace information
+            </summary>
+            <param name="ex">The exception to re-throw.</param>
+            <remarks>
+            For more information on this technique, see
+            http://www.dotnetjunkies.com/WebLog/chris.taylor/archive/2004/03/03/8353.aspx.
+            The remote_stack_trace string is here to support Mono.
+            </remarks>
+        </member>
+        <member name="M:ExceptionExtensions.Unwrap(System.Exception)">
+            <summary>
+            Unwraps an exception to remove any wrappers, like <see cref="T:System.Reflection.TargetInvocationException"/>.
+            </summary>
+            <param name="ex">The exception to unwrap.</param>
+            <returns>The unwrapped exception.</returns>
+        </member>
+        <member name="T:Guard">
+            <summary>
+            Guard class, used for guard clauses and argument validation
+            </summary>
+        </member>
+        <member name="M:Guard.ArgumentNotNull(System.String,System.Object)">
+            <summary/>
+        </member>
+        <member name="M:Guard.ArgumentNotNullOrEmpty(System.String,System.Collections.IEnumerable)">
+            <summary/>
+        </member>
+        <member name="M:Guard.ArgumentValid(System.String,System.String,System.Boolean)">
+            <summary/>
+        </member>
+        <member name="T:Xunit.Assert">
+            <summary>
+            Contains various static methods that are used to verify that conditions are met during the
+            process of running tests.
+            </summary>
+        </member>
+        <member name="M:Xunit.Assert.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.Assert"/> class.
+            </summary>
+        </member>
+        <member name="M:Xunit.Assert.Equals(System.Object,System.Object)">
+            <summary>Do not call this method.</summary>
+        </member>
+        <member name="M:Xunit.Assert.ReferenceEquals(System.Object,System.Object)">
+            <summary>Do not call this method.</summary>
+        </member>
+        <member name="M:Xunit.Assert.False(System.Boolean)">
+            <summary>
+            Verifies that the condition is false.
+            </summary>
+            <param name="condition">The condition to be tested</param>
+            <exception cref="T:Xunit.Sdk.FalseException">Thrown if the condition is not false</exception>
+        </member>
+        <member name="M:Xunit.Assert.False(System.Boolean,System.String)">
+            <summary>
+            Verifies that the condition is false.
+            </summary>
+            <param name="condition">The condition to be tested</param>
+            <param name="userMessage">The message to show when the condition is not false</param>
+            <exception cref="T:Xunit.Sdk.FalseException">Thrown if the condition is not false</exception>
+        </member>
+        <member name="M:Xunit.Assert.True(System.Boolean)">
+            <summary>
+            Verifies that an expression is true.
+            </summary>
+            <param name="condition">The condition to be inspected</param>
+            <exception cref="T:Xunit.Sdk.TrueException">Thrown when the condition is false</exception>
+        </member>
+        <member name="M:Xunit.Assert.True(System.Boolean,System.String)">
+            <summary>
+            Verifies that an expression is true.
+            </summary>
+            <param name="condition">The condition to be inspected</param>
+            <param name="userMessage">The message to be shown when the condition is false</param>
+            <exception cref="T:Xunit.Sdk.TrueException">Thrown when the condition is false</exception>
+        </member>
+        <member name="M:Xunit.Assert.Collection``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0}[])">
+            <summary>
+            Verifies that a collection contains exactly a given number of elements, which meet
+            the criteria provided by the element inspectors.
+            </summary>
+            <typeparam name="T">The type of the object to be verified</typeparam>
+            <param name="collection">The collection to be inspected</param>
+            <param name="elementInspectors">The element inspectors, which inspect each element in turn. The
+            total number of element inspectors must exactly match the number of elements in the collection.</param>
+        </member>
+        <member name="M:Xunit.Assert.Contains``1(``0,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Verifies that a collection contains a given object.
+            </summary>
+            <typeparam name="T">The type of the object to be verified</typeparam>
+            <param name="expected">The object expected to be in the collection</param>
+            <param name="collection">The collection to be inspected</param>
+            <exception cref="T:Xunit.Sdk.ContainsException">Thrown when the object is not present in the collection</exception>
+        </member>
+        <member name="M:Xunit.Assert.Contains``1(``0,System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Verifies that a collection contains a given object, using an equality comparer.
+            </summary>
+            <typeparam name="T">The type of the object to be verified</typeparam>
+            <param name="expected">The object expected to be in the collection</param>
+            <param name="collection">The collection to be inspected</param>
+            <param name="comparer">The comparer used to equate objects in the collection with the expected object</param>
+            <exception cref="T:Xunit.Sdk.ContainsException">Thrown when the object is not present in the collection</exception>
+        </member>
+        <member name="M:Xunit.Assert.DoesNotContain``1(``0,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Verifies that a collection does not contain a given object.
+            </summary>
+            <typeparam name="T">The type of the object to be compared</typeparam>
+            <param name="expected">The object that is expected not to be in the collection</param>
+            <param name="collection">The collection to be inspected</param>
+            <exception cref="T:Xunit.Sdk.DoesNotContainException">Thrown when the object is present inside the container</exception>
+        </member>
+        <member name="M:Xunit.Assert.DoesNotContain``1(``0,System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Verifies that a collection does not contain a given object, using an equality comparer.
+            </summary>
+            <typeparam name="T">The type of the object to be compared</typeparam>
+            <param name="expected">The object that is expected not to be in the collection</param>
+            <param name="collection">The collection to be inspected</param>
+            <param name="comparer">The comparer used to equate objects in the collection with the expected object</param>
+            <exception cref="T:Xunit.Sdk.DoesNotContainException">Thrown when the object is present inside the container</exception>
+        </member>
+        <member name="M:Xunit.Assert.Empty(System.Collections.IEnumerable)">
+            <summary>
+            Verifies that a collection is empty.
+            </summary>
+            <param name="collection">The collection to be inspected</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when the collection is null</exception>
+            <exception cref="T:Xunit.Sdk.EmptyException">Thrown when the collection is not empty</exception>
+        </member>
+        <member name="M:Xunit.Assert.Equal``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Verifies that two sequences are equivalent, using a default comparer.
+            </summary>
+            <typeparam name="T">The type of the objects to be compared</typeparam>
+            <param name="expected">The expected value</param>
+            <param name="actual">The value to be compared against</param>
+            <exception cref="T:Xunit.Sdk.EqualException">Thrown when the objects are not equal</exception>
+        </member>
+        <member name="M:Xunit.Assert.Equal``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Verifies that two sequences are equivalent, using a custom equatable comparer.
+            </summary>
+            <typeparam name="T">The type of the objects to be compared</typeparam>
+            <param name="expected">The expected value</param>
+            <param name="actual">The value to be compared against</param>
+            <param name="comparer">The comparer used to compare the two objects</param>
+            <exception cref="T:Xunit.Sdk.EqualException">Thrown when the objects are not equal</exception>
+        </member>
+        <member name="M:Xunit.Assert.None(System.Collections.IEnumerable,System.Object)">
+            <summary>
+            Verifies that the given collection contains no
+            elements of the given value. The collection may or may not
+            contain other values.
+            </summary>
+            <param name="collection">The collection.</param>
+            <param name="expected">The value to find in the collection.</param>
+            <exception cref="T:Xunit.Sdk.NoneException">Thrown when the collection contains at least one of the given element.</exception>
+        </member>
+        <member name="M:Xunit.Assert.None``1(System.Collections.Generic.IEnumerable{``0},``0)">
+            <summary>
+            Verifies that the given collection contains no
+            elements of the given value. The collection may or may not
+            contain other values.
+            </summary>
+            <param name="collection">The collection.</param>
+            <param name="expected">The value to find in the collection.</param>
+            <exception cref="T:Xunit.Sdk.NoneException">Thrown when the collection contains at least one of the given element.</exception>
+        </member>
+        <member name="M:Xunit.Assert.None``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Verifies that the given collection contains no
+            elements that match the given predicate. The collection may or may not
+            contain other values.
+            </summary>
+            <param name="collection">The collection.</param>
+            <param name="predicate">The item matching predicate.</param>
+            <exception cref="T:Xunit.Sdk.NoneException">Thrown when the collection contains at least one matching element.</exception>
+        </member>
+        <member name="M:Xunit.Assert.NotEmpty(System.Collections.IEnumerable)">
+            <summary>
+            Verifies that a collection is not empty.
+            </summary>
+            <param name="collection">The collection to be inspected</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when a null collection is passed</exception>
+            <exception cref="T:Xunit.Sdk.NotEmptyException">Thrown when the collection is empty</exception>
+        </member>
+        <member name="M:Xunit.Assert.NotEqual``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Verifies that two sequences are not equivalent, using a default comparer.
+            </summary>
+            <typeparam name="T">The type of the objects to be compared</typeparam>
+            <param name="expected">The expected object</param>
+            <param name="actual">The actual object</param>
+            <exception cref="T:Xunit.Sdk.NotEqualException">Thrown when the objects are equal</exception>
+        </member>
+        <member name="M:Xunit.Assert.NotEqual``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Verifies that two sequences are not equivalent, using a custom equality comparer.
+            </summary>
+            <typeparam name="T">The type of the objects to be compared</typeparam>
+            <param name="expected">The expected object</param>
+            <param name="actual">The actual object</param>
+            <param name="comparer">The comparer used to compare the two objects</param>
+            <exception cref="T:Xunit.Sdk.NotEqualException">Thrown when the objects are equal</exception>
+        </member>
+        <member name="M:Xunit.Assert.Single(System.Collections.IEnumerable)">
+            <summary>
+            Verifies that the given collection contains only a single
+            element of the given type.
+            </summary>
+            <param name="collection">The collection.</param>
+            <returns>The single item in the collection.</returns>
+            <exception cref="T:Xunit.Sdk.SingleException">Thrown when the collection does not contain
+            exactly one element.</exception>
+        </member>
+        <member name="M:Xunit.Assert.Single(System.Collections.IEnumerable,System.Object)">
+            <summary>
+            Verifies that the given collection contains only a single
+            element of the given value. The collection may or may not
+            contain other values.
+            </summary>
+            <param name="collection">The collection.</param>
+            <param name="expected">The value to find in the collection.</param>
+            <returns>The single item in the collection.</returns>
+            <exception cref="T:Xunit.Sdk.SingleException">Thrown when the collection does not contain
+            exactly one element.</exception>
+        </member>
+        <member name="M:Xunit.Assert.Single``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Verifies that the given collection contains only a single
+            element of the given type.
+            </summary>
+            <typeparam name="T">The collection type.</typeparam>
+            <param name="collection">The collection.</param>
+            <returns>The single item in the collection.</returns>
+            <exception cref="T:Xunit.Sdk.SingleException">Thrown when the collection does not contain
+            exactly one element.</exception>
+        </member>
+        <member name="M:Xunit.Assert.Single``1(System.Collections.Generic.IEnumerable{``0},System.Predicate{``0})">
+            <summary>
+            Verifies that the given collection contains only a single
+            element of the given type which matches the given predicate. The
+            collection may or may not contain other values which do not
+            match the given predicate.
+            </summary>
+            <typeparam name="T">The collection type.</typeparam>
+            <param name="collection">The collection.</param>
+            <param name="predicate">The item matching predicate.</param>
+            <returns>The single item in the filtered collection.</returns>
+            <exception cref="T:Xunit.Sdk.SingleException">Thrown when the filtered collection does
+            not contain exactly one element.</exception>
+        </member>
+        <member name="M:Xunit.Assert.Equal``1(``0,``0)">
+            <summary>
+            Verifies that two objects are equal, using a default comparer.
+            </summary>
+            <typeparam name="T">The type of the objects to be compared</typeparam>
+            <param name="expected">The expected value</param>
+            <param name="actual">The value to be compared against</param>
+            <exception cref="T:Xunit.Sdk.EqualException">Thrown when the objects are not equal</exception>
+        </member>
+        <member name="M:Xunit.Assert.Equal``1(``0,``0,System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Verifies that two objects are equal, using a custom equatable comparer.
+            </summary>
+            <typeparam name="T">The type of the objects to be compared</typeparam>
+            <param name="expected">The expected value</param>
+            <param name="actual">The value to be compared against</param>
+            <param name="comparer">The comparer used to compare the two objects</param>
+            <exception cref="T:Xunit.Sdk.EqualException">Thrown when the objects are not equal</exception>
+        </member>
+        <member name="M:Xunit.Assert.Equal(System.Double,System.Double,System.Int32)">
+            <summary>
+            Verifies that two <see cref="T:System.Double"/> values are equal, within the number of decimal
+            places given by <paramref name="precision"/>.
+            </summary>
+            <param name="expected">The expected value</param>
+            <param name="actual">The value to be compared against</param>
+            <param name="precision">The number of decimal places (valid values: 0-15)</param>
+            <exception cref="T:Xunit.Sdk.EqualException">Thrown when the values are not equal</exception>
+        </member>
+        <member name="M:Xunit.Assert.Equal(System.Decimal,System.Decimal,System.Int32)">
+            <summary>
+            Verifies that two <see cref="T:System.Decimal"/> values are equal, within the number of decimal
+            places given by <paramref name="precision"/>.
+            </summary>
+            <param name="expected">The expected value</param>
+            <param name="actual">The value to be compared against</param>
+            <param name="precision">The number of decimal places (valid values: 0-15)</param>
+            <exception cref="T:Xunit.Sdk.EqualException">Thrown when the values are not equal</exception>
+        </member>
+        <member name="M:Xunit.Assert.NotEqual``1(``0,``0)">
+            <summary>
+            Verifies that two objects are not equal, using a default comparer.
+            </summary>
+            <typeparam name="T">The type of the objects to be compared</typeparam>
+            <param name="expected">The expected object</param>
+            <param name="actual">The actual object</param>
+            <exception cref="T:Xunit.Sdk.NotEqualException">Thrown when the objects are equal</exception>
+        </member>
+        <member name="M:Xunit.Assert.NotEqual``1(``0,``0,System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Verifies that two objects are not equal, using a custom equality comparer.
+            </summary>
+            <typeparam name="T">The type of the objects to be compared</typeparam>
+            <param name="expected">The expected object</param>
+            <param name="actual">The actual object</param>
+            <param name="comparer">The comparer used to examine the objects</param>
+            <exception cref="T:Xunit.Sdk.NotEqualException">Thrown when the objects are equal</exception>
+        </member>
+        <member name="M:Xunit.Assert.NotNull(System.Object)">
+            <summary>
+            Verifies that an object reference is not null.
+            </summary>
+            <param name="object">The object to be validated</param>
+            <exception cref="T:Xunit.Sdk.NotNullException">Thrown when the object is not null</exception>
+        </member>
+        <member name="M:Xunit.Assert.NotSame(System.Object,System.Object)">
+            <summary>
+            Verifies that two objects are not the same instance.
+            </summary>
+            <param name="expected">The expected object instance</param>
+            <param name="actual">The actual object instance</param>
+            <exception cref="T:Xunit.Sdk.NotSameException">Thrown when the objects are the same instance</exception>
+        </member>
+        <member name="M:Xunit.Assert.Null(System.Object)">
+            <summary>
+            Verifies that an object reference is null.
+            </summary>
+            <param name="object">The object to be inspected</param>
+            <exception cref="T:Xunit.Sdk.NullException">Thrown when the object reference is not null</exception>
+        </member>
+        <member name="M:Xunit.Assert.Same(System.Object,System.Object)">
+            <summary>
+            Verifies that two objects are the same instance.
+            </summary>
+            <param name="expected">The expected object instance</param>
+            <param name="actual">The actual object instance</param>
+            <exception cref="T:Xunit.Sdk.SameException">Thrown when the objects are not the same instance</exception>
+        </member>
+        <member name="M:Xunit.Assert.DoesNotThrow(System.Action)">
+            <summary>
+            Verifies that a block of code does not throw any exceptions.
+            </summary>
+            <param name="testCode">A delegate to the code to be tested</param>
+        </member>
+        <member name="M:Xunit.Assert.DoesNotThrow(System.Func{System.Object})">
+            <summary>
+            Verifies that a block of code does not throw any exceptions.
+            </summary>
+            <param name="testCode">A delegate to the code to be tested</param>
+        </member>
+        <member name="M:Xunit.Assert.Throws``1(System.Action)">
+            <summary>
+            Verifies that the exact exception is thrown (and not a derived exception type).
+            </summary>
+            <typeparam name="T">The type of the exception expected to be thrown</typeparam>
+            <param name="testCode">A delegate to the code to be tested</param>
+            <returns>The exception that was thrown, when successful</returns>
+            <exception cref="T:Xunit.Sdk.ThrowsException">Thrown when an exception was not thrown, or when an exception of the incorrect type is thrown</exception>
+        </member>
+        <member name="M:Xunit.Assert.Throws``1(System.Func{System.Object})">
+            <summary>
+            Verifies that the exact exception is thrown (and not a derived exception type).
+            Generally used to test property accessors.
+            </summary>
+            <typeparam name="T">The type of the exception expected to be thrown</typeparam>
+            <param name="testCode">A delegate to the code to be tested</param>
+            <returns>The exception that was thrown, when successful</returns>
+            <exception cref="T:Xunit.Sdk.ThrowsException">Thrown when an exception was not thrown, or when an exception of the incorrect type is thrown</exception>
+        </member>
+        <member name="M:Xunit.Assert.Throws(System.Type,System.Action)">
+            <summary>
+            Verifies that the exact exception is thrown (and not a derived exception type).
+            </summary>
+            <param name="exceptionType">The type of the exception expected to be thrown</param>
+            <param name="testCode">A delegate to the code to be tested</param>
+            <returns>The exception that was thrown, when successful</returns>
+            <exception cref="T:Xunit.Sdk.ThrowsException">Thrown when an exception was not thrown, or when an exception of the incorrect type is thrown</exception>
+        </member>
+        <member name="M:Xunit.Assert.Throws(System.Type,System.Func{System.Object})">
+            <summary>
+            Verifies that the exact exception is thrown (and not a derived exception type).
+            Generally used to test property accessors.
+            </summary>
+            <param name="exceptionType">The type of the exception expected to be thrown</param>
+            <param name="testCode">A delegate to the code to be tested</param>
+            <returns>The exception that was thrown, when successful</returns>
+            <exception cref="T:Xunit.Sdk.ThrowsException">Thrown when an exception was not thrown, or when an exception of the incorrect type is thrown</exception>
+        </member>
+        <member name="M:Xunit.Assert.Throws``1(System.Action,System.String)">
+            <summary>
+            Verifies that the exact exception is thrown (and not a derived exception type), where the exception
+            derives from <see cref="T:System.ArgumentException"/> and has the given parameter name.
+            </summary>
+            <param name="testCode">A delegate to the code to be tested</param>
+            <param name="paramName">The parameter name that is expected to be in the exception</param>
+            <returns>The exception that was thrown, when successful</returns>
+            <exception cref="T:Xunit.Sdk.ThrowsException">Thrown when an exception was not thrown, or when an exception of the incorrect type is thrown</exception>
+        </member>
+        <member name="M:Xunit.Assert.Throws``1(System.Func{System.Object},System.String)">
+            <summary>
+            Verifies that the exact exception is thrown (and not a derived exception type), where the exception
+            derives from <see cref="T:System.ArgumentException"/> and has the given parameter name.
+            </summary>
+            <param name="testCode">A delegate to the code to be tested</param>
+            <param name="paramName">The parameter name that is expected to be in the exception</param>
+            <returns>The exception that was thrown, when successful</returns>
+            <exception cref="T:Xunit.Sdk.ThrowsException">Thrown when an exception was not thrown, or when an exception of the incorrect type is thrown</exception>
+        </member>
+        <member name="M:Xunit.Assert.PropertyChanged(System.ComponentModel.INotifyPropertyChanged,System.String,System.Action)">
+            <summary>
+            Verifies that the provided object raised INotifyPropertyChanged.PropertyChanged
+            as a result of executing the given test code.
+            </summary>
+            <param name="object">The object which should raise the notification</param>
+            <param name="propertyName">The property name for which the notification should be raised</param>
+            <param name="testCode">The test code which should cause the notification to be raised</param>
+            <exception cref="T:Xunit.Sdk.PropertyChangedException">Thrown when the notification is not raised</exception>
+        </member>
+        <member name="M:Xunit.Assert.InRange``1(``0,``0,``0)">
+            <summary>
+            Verifies that a value is within a given range.
+            </summary>
+            <typeparam name="T">The type of the value to be compared</typeparam>
+            <param name="actual">The actual value to be evaluated</param>
+            <param name="low">The (inclusive) low value of the range</param>
+            <param name="high">The (inclusive) high value of the range</param>
+            <exception cref="T:Xunit.Sdk.InRangeException">Thrown when the value is not in the given range</exception>
+        </member>
+        <member name="M:Xunit.Assert.InRange``1(``0,``0,``0,System.Collections.Generic.IComparer{``0})">
+            <summary>
+            Verifies that a value is within a given range, using a comparer.
+            </summary>
+            <typeparam name="T">The type of the value to be compared</typeparam>
+            <param name="actual">The actual value to be evaluated</param>
+            <param name="low">The (inclusive) low value of the range</param>
+            <param name="high">The (inclusive) high value of the range</param>
+            <param name="comparer">The comparer used to evaluate the value's range</param>
+            <exception cref="T:Xunit.Sdk.InRangeException">Thrown when the value is not in the given range</exception>
+        </member>
+        <member name="M:Xunit.Assert.NotInRange``1(``0,``0,``0)">
+            <summary>
+            Verifies that a value is not within a given range, using the default comparer.
+            </summary>
+            <typeparam name="T">The type of the value to be compared</typeparam>
+            <param name="actual">The actual value to be evaluated</param>
+            <param name="low">The (inclusive) low value of the range</param>
+            <param name="high">The (inclusive) high value of the range</param>
+            <exception cref="T:Xunit.Sdk.NotInRangeException">Thrown when the value is in the given range</exception>
+        </member>
+        <member name="M:Xunit.Assert.NotInRange``1(``0,``0,``0,System.Collections.Generic.IComparer{``0})">
+            <summary>
+            Verifies that a value is not within a given range, using a comparer.
+            </summary>
+            <typeparam name="T">The type of the value to be compared</typeparam>
+            <param name="actual">The actual value to be evaluated</param>
+            <param name="low">The (inclusive) low value of the range</param>
+            <param name="high">The (inclusive) high value of the range</param>
+            <param name="comparer">The comparer used to evaluate the value's range</param>
+            <exception cref="T:Xunit.Sdk.NotInRangeException">Thrown when the value is in the given range</exception>
+        </member>
+        <member name="M:Xunit.Assert.Contains(System.String,System.String)">
+            <summary>
+            Verifies that a string contains a given sub-string, using the current culture.
+            </summary>
+            <param name="expectedSubstring">The sub-string expected to be in the string</param>
+            <param name="actualString">The string to be inspected</param>
+            <exception cref="T:Xunit.Sdk.ContainsException">Thrown when the sub-string is not present inside the string</exception>
+        </member>
+        <member name="M:Xunit.Assert.Contains(System.String,System.String,System.StringComparison)">
+            <summary>
+            Verifies that a string contains a given sub-string, using the given comparison type.
+            </summary>
+            <param name="expectedSubstring">The sub-string expected to be in the string</param>
+            <param name="actualString">The string to be inspected</param>
+            <param name="comparisonType">The type of string comparison to perform</param>
+            <exception cref="T:Xunit.Sdk.ContainsException">Thrown when the sub-string is not present inside the string</exception>
+        </member>
+        <member name="M:Xunit.Assert.DoesNotContain(System.String,System.String)">
+            <summary>
+            Verifies that a string does not contain a given sub-string, using the current culture.
+            </summary>
+            <param name="expectedSubstring">The sub-string which is expected not to be in the string</param>
+            <param name="actualString">The string to be inspected</param>
+            <exception cref="T:Xunit.Sdk.DoesNotContainException">Thrown when the sub-string is present inside the string</exception>
+        </member>
+        <member name="M:Xunit.Assert.DoesNotContain(System.String,System.String,System.StringComparison)">
+            <summary>
+            Verifies that a string does not contain a given sub-string, using the current culture.
+            </summary>
+            <param name="expectedSubstring">The sub-string which is expected not to be in the string</param>
+            <param name="actualString">The string to be inspected</param>
+            <param name="comparisonType">The type of string comparison to perform</param>
+            <exception cref="T:Xunit.Sdk.DoesNotContainException">Thrown when the sub-string is present inside the given string</exception>
+        </member>
+        <member name="M:Xunit.Assert.Equal(System.String,System.String)">
+            <summary>
+            Verifies that two strings are equivalent.
+            </summary>
+            <param name="expected">The expected string value.</param>
+            <param name="actual">The actual string value.</param>
+            <exception cref="T:Xunit.Sdk.EqualException">Thrown when the strings are not equivalent.</exception>
+        </member>
+        <member name="M:Xunit.Assert.Equal(System.String,System.String,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Verifies that two strings are equivalent.
+            </summary>
+            <param name="expected">The expected string value.</param>
+            <param name="actual">The actual string value.</param>
+            <param name="ignoreCase">If set to <c>true</c>, ignores cases differences. The invariant culture is used.</param>
+            <param name="ignoreLineEndingDifferences">If set to <c>true</c>, treats \r\n, \r, and \n as equivalent.</param>
+            <param name="ignoreWhiteSpaceDifferences">If set to <c>true</c>, treats spaces and tabs (in any non-zero quantity) as equivalent.</param>
+            <exception cref="T:Xunit.Sdk.EqualException">Thrown when the strings are not equivalent.</exception>
+        </member>
+        <member name="M:Xunit.Assert.IsAssignableFrom``1(System.Object)">
+            <summary>
+            Verifies that an object is of the given type or a derived type.
+            </summary>
+            <typeparam name="T">The type the object should be</typeparam>
+            <param name="object">The object to be evaluated</param>
+            <returns>The object, casted to type T when successful</returns>
+            <exception cref="T:Xunit.Sdk.IsAssignableFromException">Thrown when the object is not the given type</exception>
+        </member>
+        <member name="M:Xunit.Assert.IsAssignableFrom(System.Type,System.Object)">
+            <summary>
+            Verifies that an object is of the given type or a derived type.
+            </summary>
+            <param name="expectedType">The type the object should be</param>
+            <param name="object">The object to be evaluated</param>
+            <exception cref="T:Xunit.Sdk.IsAssignableFromException">Thrown when the object is not the given type</exception>
+        </member>
+        <member name="M:Xunit.Assert.IsNotType``1(System.Object)">
+            <summary>
+            Verifies that an object is not exactly the given type.
+            </summary>
+            <typeparam name="T">The type the object should not be</typeparam>
+            <param name="object">The object to be evaluated</param>
+            <exception cref="T:Xunit.Sdk.IsNotTypeException">Thrown when the object is the given type</exception>
+        </member>
+        <member name="M:Xunit.Assert.IsNotType(System.Type,System.Object)">
+            <summary>
+            Verifies that an object is not exactly the given type.
+            </summary>
+            <param name="expectedType">The type the object should not be</param>
+            <param name="object">The object to be evaluated</param>
+            <exception cref="T:Xunit.Sdk.IsNotTypeException">Thrown when the object is the given type</exception>
+        </member>
+        <member name="M:Xunit.Assert.IsType``1(System.Object)">
+            <summary>
+            Verifies that an object is exactly the given type (and not a derived type).
+            </summary>
+            <typeparam name="T">The type the object should be</typeparam>
+            <param name="object">The object to be evaluated</param>
+            <returns>The object, casted to type T when successful</returns>
+            <exception cref="T:Xunit.Sdk.IsTypeException">Thrown when the object is not the given type</exception>
+        </member>
+        <member name="M:Xunit.Assert.IsType(System.Type,System.Object)">
+            <summary>
+            Verifies that an object is exactly the given type (and not a derived type).
+            </summary>
+            <param name="expectedType">The type the object should be</param>
+            <param name="object">The object to be evaluated</param>
+            <exception cref="T:Xunit.Sdk.IsTypeException">Thrown when the object is not the given type</exception>
+        </member>
+        <member name="T:Xunit.IClassFixture`1">
+            <summary>
+            Used to decorate xUnit.net test classes and collections to indicate a test which has
+            per-test-class fixture data. An instance of the fixture data is initialized just before
+            the first test in the class is run, and if it implements IDisposable, is disposed
+            after the last test in the class is run. To gain access to the fixture data from
+            inside the test, a constructor argument should be added to the test class which
+            exactly matches the <typeparamref name="TFixture"/>.
+            </summary>
+            <typeparam name="TFixture">The type of the fixture.</typeparam>
+        </member>
+        <member name="T:Xunit.Sdk.ExceptionAggregator">
+            <summary>
+            Aggregates exceptions. Intended to run one or more code blocks, and collect the
+            exceptions thrown by those code blocks.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.ExceptionAggregator.Add(System.Exception)">
+            <summary>
+            Adds an exception to the aggregator.
+            </summary>
+            <param name="ex">The exception to be added.</param>
+        </member>
+        <member name="M:Xunit.Sdk.ExceptionAggregator.Run(System.Action)">
+            <summary>
+            Runs the code, catching the exception that is thrown and adding it to
+            the aggregate.
+            </summary>
+            <param name="code">The code to be run.</param>
+        </member>
+        <member name="M:Xunit.Sdk.ExceptionAggregator.ToException">
+            <summary>
+            Returns an exception that represents the exceptions thrown by the code
+            passed to the <see cref="M:Xunit.Sdk.ExceptionAggregator.Run(System.Action)"/> method.
+            </summary>
+            <returns>Returns <c>null</c> if no exceptions were thrown; returns the
+            exact exception is a single exception was thrown; returns <see cref="T:System.AggregateException"/>
+            if more than one exception was thrown.</returns>
+        </member>
+        <member name="P:Xunit.Sdk.ExceptionAggregator.HasExceptions">
+            <summary>
+            Returns <c>true</c> if the aggregator has at least one exception inside it.
+            </summary>
+        </member>
+        <member name="T:Xunit.Sdk.AssertCollectionCountException">
+            <summary>
+            Exception thrown when the collection did not contain exactly the given number element.
+            </summary>
+        </member>
+        <member name="T:Xunit.Sdk.XunitException">
+            <summary>
+            The base assert exception class
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.XunitException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.Sdk.XunitException"/> class.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.XunitException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.Sdk.XunitException"/> class.
+            </summary>
+            <param name="userMessage">The user message to be displayed</param>
+        </member>
+        <member name="M:Xunit.Sdk.XunitException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.Sdk.XunitException"/> class.
+            </summary>
+            <param name="userMessage">The user message to be displayed</param>
+            <param name="innerException">The inner exception</param>
+        </member>
+        <member name="M:Xunit.Sdk.XunitException.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.Sdk.XunitException"/> class.
+            </summary>
+            <param name="userMessage">The user message to be displayed</param>
+            <param name="stackTrace">The stack trace to be displayed</param>
+        </member>
+        <member name="M:Xunit.Sdk.XunitException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.XunitException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.XunitException.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.XunitException.StackTrace">
+            <summary>
+            Gets a string representation of the frames on the call stack at the time the current exception was thrown.
+            </summary>
+            <returns>A string that describes the contents of the call stack, with the most recent method call appearing first.</returns>
+        </member>
+        <member name="P:Xunit.Sdk.XunitException.UserMessage">
+            <summary>
+            Gets the user message
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.AssertCollectionCountException.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.Sdk.SingleException"/> class.
+            </summary>
+            <param name="expectedCount">The expected number of items in the collection.</param>
+            <param name="actualCount">The actual number of items in the collection.</param>
+        </member>
+        <member name="M:Xunit.Sdk.AssertCollectionCountException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.ExceptionUtility">
+            <summary>
+            Utility methods for dealing with exceptions.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.ExceptionUtility.GetMessage(System.Exception)">
+            <summary>
+            Gets the message for the exception, including any inner exception messages.
+            </summary>
+            <param name="ex">The exception</param>
+            <returns>The formatted message</returns>
+        </member>
+        <member name="M:Xunit.Sdk.ExceptionUtility.GetStackTrace(System.Exception)">
+            <summary>
+            Gets the stack trace for the exception, including any inner exceptions.
+            </summary>
+            <param name="ex">The exception</param>
+            <returns>The formatted stack trace</returns>
+        </member>
+        <member name="T:Xunit.Sdk.TestClassException">
+            <summary>
+            Represents an exception that happened during the process of a test class. This typically
+            means there were problems identifying the correct test class constructor, or problems
+            creating the fixture data for the test class.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.TestClassException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.NoneException">
+            <summary>
+            Exception thrown when the collection did not contain exactly zero elements.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.NoneException.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.Sdk.NoneException"/> class.
+            </summary>
+            <param name="count">The numbers of items in the collection.</param>
+        </member>
+        <member name="M:Xunit.Sdk.NoneException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.LambdaTestCase">
+            <summary>
+            A simple implementation of <see cref="T:Xunit.Sdk.XunitTestCase"/> wherein the running of the
+            test case can be represented by an <see cref="T:System.Action"/>. Useful for emitting test
+            cases which later evaluate to error messages (since throwing error messages during
+            discovery is often the wrong thing to do). See <see cref="T:Xunit.Sdk.TheoryDiscoverer"/> for
+            a use of this test case to emit an error message when a theory method is found
+            that has no test data associated with it.
+            </summary>
+        </member>
+        <member name="T:Xunit.Sdk.XunitTestCase">
+            <summary>
+            Default implementation of <see cref="T:Xunit.Abstractions.ITestCase"/> for xUnit v2 that supports tests decorated with
+            both <see cref="T:Xunit.FactAttribute"/> and <see cref="T:Xunit.TheoryAttribute"/>.
+            </summary>
+        </member>
+        <member name="T:Xunit.Sdk.LongLivedMarshalByRefObject">
+            <summary>
+            This class inherits from <see cref="T:System.MarshalByRefObject"/> and reimplements
+            <see cref="M:Xunit.Sdk.LongLivedMarshalByRefObject.InitializeLifetimeService"/> in a way that allows the object to live
+            longer than the remoting default lifetime (5 minutes).
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.LongLivedMarshalByRefObject.InitializeLifetimeService">
+            <summary/>
+        </member>
+        <member name="M:Xunit.Sdk.XunitTestCase.#ctor(Xunit.Abstractions.IAssemblyInfo,Xunit.Abstractions.ITypeInfo,Xunit.Abstractions.IMethodInfo,Xunit.Abstractions.IAttributeInfo,System.Object[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.Sdk.XunitTestCase"/> class.
+            </summary>
+            <param name="assembly">The test assembly.</param>
+            <param name="type">The test class.</param>
+            <param name="method">The test method.</param>
+            <param name="factAttribute">The instance of the <see cref="T:Xunit.FactAttribute"/>.</param>
+            <param name="arguments">The arguments for the test method.</param>
+        </member>
+        <member name="M:Xunit.Sdk.XunitTestCase.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.XunitTestCase.ConvertArguments(System.Object[],System.Type[])">
+            <summary>
+            Converts arguments into their target types.
+            </summary>
+            <param name="args">The arguments to be converted.</param>
+            <param name="types">The target types for the conversion.</param>
+            <returns>The converted arguments.</returns>
+        </member>
+        <member name="M:Xunit.Sdk.XunitTestCase.GetBeforeAfterAttributes(System.Type,System.Reflection.MethodInfo)">
+            <summary>
+            Gets the <see cref="T:Xunit.Sdk.BeforeAfterTestAttribute"/> instances for a test method.
+            </summary>
+            <param name="classUnderTest">The class under test.</param>
+            <param name="methodUnderTest">The method under test.</param>
+            <returns>The list of <see cref="T:Xunit.Sdk.BeforeAfterTestAttribute"/> instances.</returns>
+        </member>
+        <member name="M:Xunit.Sdk.XunitTestCase.GetDisplayNameWithArguments(System.String,System.Object[])">
+            <summary>
+            Supplements a display name for a test method with its arguments.
+            </summary>
+            <param name="displayName">The base display name.</param>
+            <param name="arguments">The test method's arguments.</param>
+            <returns>The supplemented display name.</returns>
+        </member>
+        <member name="M:Xunit.Sdk.XunitTestCase.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.XunitTestCase.GetRuntimeClass">
+            <summary>
+            Gets the <see cref="T:System.Type"/> of the class under test.
+            </summary>
+            <returns>The type under test, if possible; null, if not available.</returns>
+        </member>
+        <member name="M:Xunit.Sdk.XunitTestCase.GetRuntimeMethod(System.Type)">
+            <summary>
+            Gets the <see cref="T:System.Reflection.MethodInfo"/> of the method under test.
+            </summary>
+            <param name="type">The type the method is attached to.</param>
+            <returns>The method under test, if possible; null, if not available.</returns>
+        </member>
+        <member name="M:Xunit.Sdk.XunitTestCase.Run(Xunit.Abstractions.IMessageSink,System.Object[],Xunit.Sdk.ExceptionAggregator)">
+            <summary>
+            Executes the test case, returning 0 or more result messages through the message sink.
+            </summary>
+            <param name="messageSink">The message sink to report results to.</param>
+            <param name="constructorArguments">The arguments to pass to the constructor.</param>
+            <param name="aggregator">The error aggregator to use for catching exception.</param>
+            <returns>Returns <c>true</c> if the tests should continue to run; <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Xunit.Sdk.XunitTestCase.RunTests(Xunit.Abstractions.IMessageSink,System.Object[],Xunit.Sdk.ExceptionAggregator)">
+            <summary>
+            Run the tests in the test case.
+            </summary>
+            <param name="messageSink">The message sink to send results to.</param>
+            <param name="constructorArguments">The arguments to pass to the constructor.</param>
+            <param name="aggregator">The error aggregator to use for catching exception.</param>
+        </member>
+        <member name="M:Xunit.Sdk.XunitTestCase.RunTestsOnMethod(Xunit.Abstractions.IMessageSink,System.Type,System.Object[],System.Reflection.MethodInfo,System.Collections.Generic.List{Xunit.Sdk.BeforeAfterTestAttribute},Xunit.Sdk.ExceptionAggregator,System.Decimal@)">
+            <summary>
+            Runs the tests for a given test method.
+            </summary>
+            <param name="messageSink">The message sink to send results to.</param>
+            <param name="classUnderTest">The class under test.</param>
+            <param name="constructorArguments">The arguments to pass to the constructor.</param>
+            <param name="methodUnderTest">The method under test.</param>
+            <param name="beforeAfterAttributes">The <see cref="T:Xunit.Sdk.BeforeAfterTestAttribute"/> instances attached to the test.</param>
+            <param name="aggregator">The error aggregator to use for catching exception.</param>
+            <param name="executionTime">The time spent executing the tests.</param>
+        </member>
+        <member name="M:Xunit.Sdk.XunitTestCase.RunTestWithArguments(Xunit.Abstractions.IMessageSink,System.Type,System.Object[],System.Reflection.MethodInfo,System.Object[],System.String,System.Collections.Generic.List{Xunit.Sdk.BeforeAfterTestAttribute},Xunit.Sdk.ExceptionAggregator,System.Decimal@)">
+            <summary>
+            Runs a single test for a given test method.
+            </summary>
+            <param name="messageSink">The message sink to send results to.</param>
+            <param name="classUnderTest">The class under test.</param>
+            <param name="constructorArguments">The arguments to pass to the constructor.</param>
+            <param name="methodUnderTest">The method under test.</param>
+            <param name="testMethodArguments">The arguments to pass to the test method.</param>
+            <param name="displayName">The display name for the test.</param>
+            <param name="beforeAfterAttributes">The <see cref="T:Xunit.Sdk.BeforeAfterTestAttribute"/> instances attached to the test.</param>
+            <param name="aggregator">The error aggregator to use for catching exception.</param>
+            <param name="executionTime">The time spent executing the tests.</param>
+        </member>
+        <member name="P:Xunit.Sdk.XunitTestCase.Arguments">
+            <summary>
+            The arguments that will be passed to the test method.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.XunitTestCase.Assembly">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.XunitTestCase.Class">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.XunitTestCase.DisplayName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.XunitTestCase.Method">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.XunitTestCase.SkipReason">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.XunitTestCase.SourceFileLine">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.XunitTestCase.SourceFileName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.XunitTestCase.TestCollection">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.XunitTestCase.Traits">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.XunitTestCase.UniqueID">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.LambdaTestCase.#ctor(Xunit.Abstractions.IAssemblyInfo,Xunit.Abstractions.ITypeInfo,Xunit.Abstractions.IMethodInfo,Xunit.Abstractions.IAttributeInfo,System.Action)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.Sdk.LambdaTestCase"/> class.
+            </summary>
+            <param name="assembly">The test assembly.</param>
+            <param name="testClass">The test class.</param>
+            <param name="testMethod">The test method.</param>
+            <param name="factAttribute">The instance of <see cref="T:Xunit.FactAttribute"/>.</param>
+            <param name="lambda">The code to run for the test.</param>
+        </member>
+        <member name="M:Xunit.Sdk.LambdaTestCase.RunTests(Xunit.Abstractions.IMessageSink,System.Object[],Xunit.Sdk.ExceptionAggregator)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.XunitTheoryTestCase">
+            <summary>
+            Represents a test case which runs multiple tests for theory data, either because the
+            data was not enumerable or because the data was not serializable.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.XunitTheoryTestCase.#ctor(Xunit.Abstractions.IAssemblyInfo,Xunit.Abstractions.ITypeInfo,Xunit.Abstractions.IMethodInfo,Xunit.Abstractions.IAttributeInfo)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.Sdk.XunitTheoryTestCase"/> class.
+            </summary>
+            <param name="assembly">The test assembly.</param>
+            <param name="type">The type under test.</param>
+            <param name="method">The method under test.</param>
+            <param name="theoryAttribute">The theory attribute.</param>
+        </member>
+        <member name="M:Xunit.Sdk.XunitTheoryTestCase.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc />
+        </member>
+        <member name="M:Xunit.Sdk.XunitTheoryTestCase.RunTestsOnMethod(Xunit.Abstractions.IMessageSink,System.Type,System.Object[],System.Reflection.MethodInfo,System.Collections.Generic.List{Xunit.Sdk.BeforeAfterTestAttribute},Xunit.Sdk.ExceptionAggregator,System.Decimal@)">
+            <inheritdoc />
+        </member>
+        <member name="T:Xunit.Sdk.InlineDataDiscoverer">
+            <summary>
+            Implementation of <see cref="T:Xunit.Sdk.IDataDiscoverer"/> used to discover the data
+            provided by <see cref="T:Xunit.InlineDataAttribute"/>.
+            </summary>
+        </member>
+        <member name="T:Xunit.Sdk.IDataDiscoverer">
+            <summary>
+            This class is responsible for discovering the data available in an implementation
+            of <see cref="T:Xunit.Sdk.DataAttribute"/>. The discovery process may not always have access
+            to reflection (i.e., running in Resharper), so the discoverer must make a best
+            effort to return data, but may return null when there is not enough information
+            available (for example, if reflection is required to answer the question).
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.IDataDiscoverer.GetData(Xunit.Abstractions.IAttributeInfo,Xunit.Abstractions.IMethodInfo)">
+            <summary>
+            Returns the data to be used to test the theory.
+            </summary>
+            <remarks>
+            This will be called during
+            discovery, at which point the <paramref name="testMethod"/> may or may not
+            be backed by reflection (i.e., implementing <see cref="T:Xunit.Abstractions.IReflectionMethodInfo"/>).
+            If the data is not available because reflection is required, then you may return
+            null to inform xUnit that the quantity of data is unknown at this point.
+            When the tests are run, if you returned back null during discovery, then this method
+            will be called again to retrieve the data, this time guaranteed to provide
+            an implementation of <see cref="T:Xunit.Abstractions.IReflectionMethodInfo"/>. At this time, you
+            must return the actual data, and returning null is not legal.
+            </remarks>
+            <param name="dataAttribute">The data attribute being discovered</param>
+            <param name="testMethod">The method that is being tested/discovered</param>
+            <returns>The theory data (or null during discovery, if not enough
+            information is available to enumerate the data)</returns>
+        </member>
+        <member name="M:Xunit.Sdk.InlineDataDiscoverer.GetData(Xunit.Abstractions.IAttributeInfo,Xunit.Abstractions.IMethodInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.PropertyDataAttribute">
+            <summary>
+            Provides a data source for a data theory, with the data coming from a public static property on the test class.
+            The property must return IEnumerable&lt;object[]&gt; with the test data.
+            </summary>
+        </member>
+        <member name="T:Xunit.Sdk.DataAttribute">
+            <summary>
+            Abstract attribute which represents a data source for a data theory.
+            Data source providers derive from this attribute and implement GetData
+            to return the data for the theory.
+            </summary>
+        </member>
+        <member name="T:Xunit.Sdk.AttributeBase">
+            <summary>
+            This class exists to have a base class for attributes that don't run afoul of
+            the brain-dead caching algorithm in the CLR's attribute discovery system.
+            Thanks, CLR team.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.AttributeBase.TypeId">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.DataAttribute.GetData(System.Reflection.MethodInfo)">
+            <summary>
+            Returns the data to be used to test the theory.
+            </summary>
+            <param name="testMethod">The method that is being tested</param>
+            <returns>One or more sets of theory data. Each invocation of the test method
+            is represented by a single object array.</returns>
+        </member>
+        <member name="M:Xunit.PropertyDataAttribute.#ctor(System.String)">
+            <summary>
+            Creates a new instance of <see cref="T:Xunit.PropertyDataAttribute"/>/
+            </summary>
+            <param name="propertyName">The name of the public static property on the test class that will provide the test data</param>
+        </member>
+        <member name="M:Xunit.PropertyDataAttribute.GetData(System.Reflection.MethodInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.PropertyDataAttribute.PropertyName">
+            <summary>
+            Gets the property name.
+            </summary>
+        </member>
+        <member name="P:Xunit.PropertyDataAttribute.PropertyType">
+            <summary>
+            Gets or sets the type to retrieve the property data from. If not set, then the property will be
+            retrieved from the unit test class.
+            </summary>
+        </member>
+        <member name="T:Xunit.Record">
+            <summary>
+            Allows the user to record actions for a test.
+            </summary>
+        </member>
+        <member name="M:Xunit.Record.Exception(System.Action)">
+            <summary>
+            Records any exception which is thrown by the given code.
+            </summary>
+            <param name="testCode">The code which may thrown an exception.</param>
+            <returns>Returns the exception that was thrown by the code; null, otherwise.</returns>
+        </member>
+        <member name="M:Xunit.Record.Exception(System.Func{System.Object})">
+            <summary>
+            Records any exception which is thrown by the given code that has
+            a return value. Generally used for testing property accessors.
+            </summary>
+            <param name="testCode">The code which may thrown an exception.</param>
+            <returns>Returns the exception that was thrown by the code; null, otherwise.</returns>
+        </member>
+        <member name="T:Xunit.Sdk.BeforeAfterTestAttribute">
+            <summary>
+            Base attribute which indicates a test method interception (allows code to be run before and
+            after the test is run).
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.BeforeAfterTestAttribute.After(System.Reflection.MethodInfo)">
+            <summary>
+            This method is called after the test method is executed.
+            </summary>
+            <param name="methodUnderTest">The method under test</param>
+        </member>
+        <member name="M:Xunit.Sdk.BeforeAfterTestAttribute.Before(System.Reflection.MethodInfo)">
+            <summary>
+            This method is called before the test method is executed.
+            </summary>
+            <param name="methodUnderTest">The method under test</param>
+        </member>
+        <member name="P:Xunit.Sdk.BeforeAfterTestAttribute.TypeId">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.FactAttribute">
+            <summary>
+            Attribute that is applied to a method to indicate that it is a fact that should be run
+            by the test runner. It can also be extended to support a customized definition of a
+            test method.
+            </summary>
+        </member>
+        <member name="P:Xunit.FactAttribute.DisplayName">
+            <summary>
+            Gets the name of the test to be used when the test is skipped. Defaults to
+            null, which will cause the fully qualified test name to be used.
+            </summary>
+        </member>
+        <member name="P:Xunit.FactAttribute.Skip">
+            <summary>
+            Marks the test so that it will not be run, and gets or sets the skip reason
+            </summary>
+        </member>
+        <member name="P:Xunit.FactAttribute.Timeout">
+            <summary>
+            Marks the test as failing if it does not finish running within the given time
+            period, in milliseconds; set to 0 or less to indicate the method has no timeout
+            </summary>
+        </member>
+        <member name="T:Xunit.InlineDataAttribute">
+            <summary>
+            Provides a data source for a data theory, with the data coming from inline values.
+            </summary>
+        </member>
+        <member name="M:Xunit.InlineDataAttribute.#ctor(System.Object[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.InlineDataAttribute"/> class.
+            </summary>
+            <param name="data">The data values to pass to the theory.</param>
+        </member>
+        <member name="M:Xunit.InlineDataAttribute.GetData(System.Reflection.MethodInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.AssemblyLoader">
+            <summary>
+            This is an internal class, and is not intended to be called from end-user code.
+            </summary>
+        </member>
+        <member name="T:Xunit.Sdk.IAssemblyLoader">
+            <summary>
+            This is an internal interface, and is not intended to be called from end-user code.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.IAssemblyLoader.Load(System.String)">
+            <summary/>
+        </member>
+        <member name="M:Xunit.Sdk.AssemblyLoader.Load(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.AssertActualExpectedException">
+            <summary>
+            Base class for exceptions that have actual and expected values
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.AssertActualExpectedException.#ctor(System.Object,System.Object,System.String)">
+            <summary>
+            Creates a new instance of the <see href="AssertActualExpectedException"/> class.
+            </summary>
+            <param name="expected">The expected value</param>
+            <param name="actual">The actual value</param>
+            <param name="userMessage">The user message to be shown</param>
+        </member>
+        <member name="M:Xunit.Sdk.AssertActualExpectedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.AssertActualExpectedException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.AssertActualExpectedException.Actual">
+            <summary>
+            Gets the actual value.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.AssertActualExpectedException.Expected">
+            <summary>
+            Gets the expected value.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.AssertActualExpectedException.Message">
+            <summary>
+            Gets a message that describes the current exception. Includes the expected and actual values.
+            </summary>
+            <returns>The error message that explains the reason for the exception, or an empty string("").</returns>
+            <filterpriority>1</filterpriority>
+        </member>
+        <member name="T:Xunit.Sdk.CollectionException">
+            <summary>
+            Exception thrown when Assert.Collection fails.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.CollectionException.#ctor(System.Int32,System.Int32,System.Int32,System.Exception)">
+            <summary>
+            Creates a new instance of the <see cref="T:Xunit.Sdk.CollectionException"/> class.
+            </summary>
+            <param name="expectedCount">The expected number of items in the collection.</param>
+            <param name="actualCount">The actual number of items in the collection.</param>
+            <param name="indexFailurePoint">The index of the position where the first comparison failure occurred.</param>
+            <param name="innerException">The exception that was thrown during the comparison failure.</param>
+        </member>
+        <member name="M:Xunit.Sdk.CollectionException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.CollectionException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.CollectionException.ActualCount">
+            <summary>
+            The actual number of items in the collection.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.CollectionException.ExpectedCount">
+            <summary>
+            The expected number of items in the collection.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.CollectionException.IndexFailurePoint">
+            <summary>
+            The index of the position where the first comparison failure occurred, or -1 if
+            comparisions did not occur (because the actual and expected counts differed).
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.CollectionException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.CollectionException.StackTrace">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.ContainsException">
+            <summary>
+            Exception thrown when a collection unexpectedly does not contain the expected value.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.ContainsException.#ctor(System.Object)">
+            <summary>
+            Creates a new instance of the <see cref="T:Xunit.Sdk.ContainsException"/> class.
+            </summary>
+            <param name="expected">The expected object value</param>
+        </member>
+        <member name="M:Xunit.Sdk.ContainsException.#ctor(System.Object,System.Object)">
+            <summary>
+            Creates a new instance of the <see cref="T:Xunit.Sdk.ContainsException"/> class.
+            </summary>
+            <param name="expected">The expected object value</param>
+            <param name="actual">The actual value</param>
+        </member>
+        <member name="M:Xunit.Sdk.ContainsException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.DoesNotContainException">
+            <summary>
+            Exception thrown when a collection unexpectedly contains the expected value.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.DoesNotContainException.#ctor(System.Object)">
+            <summary>
+            Creates a new instance of the <see cref="T:Xunit.Sdk.DoesNotContainException"/> class.
+            </summary>
+            <param name="expected">The expected object value</param>
+        </member>
+        <member name="M:Xunit.Sdk.DoesNotContainException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.DoesNotThrowException">
+            <summary>
+            Exception thrown when Assert.DoesNotThrow fails.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.DoesNotThrowException.#ctor(System.Exception)">
+            <summary>
+            Creates a new instance of the <see cref="T:Xunit.Sdk.DoesNotThrowException"/> class.
+            </summary>
+            <param name="actual">Actual exception</param>
+        </member>
+        <member name="M:Xunit.Sdk.DoesNotThrowException.#ctor(System.String)">
+            <summary>
+            THIS CONSTRUCTOR IS FOR UNIT TESTING PURPOSES ONLY.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.DoesNotThrowException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.DoesNotThrowException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.DoesNotThrowException.StackTrace">
+            <summary>
+            Gets a string representation of the frames on the call stack at the time the current exception was thrown.
+            </summary>
+            <returns>A string that describes the contents of the call stack, with the most recent method call appearing first.</returns>
+        </member>
+        <member name="T:Xunit.Sdk.EmptyException">
+            <summary>
+            Exception thrown when a collection is unexpectedly not empty.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.EmptyException.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:Xunit.Sdk.EmptyException"/> class.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.EmptyException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.EqualException">
+            <summary>
+            Exception thrown when two values are unexpectedly not equal.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.EqualException.#ctor(System.Object,System.Object)">
+            <summary>
+            Creates a new instance of the <see cref="T:Xunit.Sdk.EqualException"/> class.
+            </summary>
+            <param name="expected">The expected object value</param>
+            <param name="actual">The actual object value</param>
+        </member>
+        <member name="M:Xunit.Sdk.EqualException.#ctor(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Creates a new instance of the <see cref="T:Xunit.Sdk.EqualException"/> class for string comparisons.
+            </summary>
+            <param name="expected">The expected string value</param>
+            <param name="actual">The actual string value</param>
+            <param name="expectedIndex">The first index in the expected string where the strings differ</param>
+            <param name="actualIndex">The first index in the actual string where the strings differ</param>
+        </member>
+        <member name="M:Xunit.Sdk.EqualException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.EqualException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.EqualException.ActualIndex">
+            <summary>
+            Gets the index into the actual value where the values first differed.
+            Returns -1 if the difference index points were not provided.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.EqualException.ExpectedIndex">
+            <summary>
+            Gets the index into the expected value where the values first differed.
+            Returns -1 if the difference index points were not provided.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.EqualException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.FalseException">
+            <summary>
+            Exception thrown when a value is unexpectedly true.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.FalseException.#ctor(System.String)">
+            <summary>
+            Creates a new instance of the <see cref="T:Xunit.Sdk.FalseException"/> class.
+            </summary>
+            <param name="userMessage">The user message to be display, or null for the default message</param>
+        </member>
+        <member name="M:Xunit.Sdk.FalseException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.InRangeException">
+            <summary>
+            Exception thrown when a value is unexpectedly not in the given range.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.InRangeException.#ctor(System.Object,System.Object,System.Object)">
+            <summary>
+            Creates a new instance of the <see cref="T:Xunit.Sdk.InRangeException"/> class.
+            </summary>
+            <param name="actual">The actual object value</param>
+            <param name="low">The low value of the range</param>
+            <param name="high">The high value of the range</param>
+        </member>
+        <member name="M:Xunit.Sdk.InRangeException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.InRangeException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.InRangeException.Actual">
+            <summary>
+            Gets the actual object value
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.InRangeException.High">
+            <summary>
+            Gets the high value of the range
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.InRangeException.Low">
+            <summary>
+            Gets the low value of the range
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.InRangeException.Message">
+            <summary>
+            Gets a message that describes the current exception.
+            </summary>
+            <returns>The error message that explains the reason for the exception, or an empty string("").</returns>
+        </member>
+        <member name="T:Xunit.Sdk.IsAssignableFromException">
+            <summary>
+            Exception thrown when the value is unexpectedly not of the given type or a derived type.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.IsAssignableFromException.#ctor(System.Type,System.Object)">
+            <summary>
+            Creates a new instance of the <see cref="T:Xunit.Sdk.IsTypeException"/> class.
+            </summary>
+            <param name="expected">The expected type</param>
+            <param name="actual">The actual object value</param>
+        </member>
+        <member name="M:Xunit.Sdk.IsAssignableFromException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.IsNotTypeException">
+            <summary>
+            Exception thrown when the value is unexpectedly of the exact given type.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.IsNotTypeException.#ctor(System.Type,System.Object)">
+            <summary>
+            Creates a new instance of the <see cref="T:Xunit.Sdk.IsNotTypeException"/> class.
+            </summary>
+            <param name="expected">The expected type</param>
+            <param name="actual">The actual object value</param>
+        </member>
+        <member name="M:Xunit.Sdk.IsNotTypeException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.IsTypeException">
+            <summary>
+            Exception thrown when the value is unexpectedly not of the exact given type.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.IsTypeException.#ctor(System.String,System.String)">
+            <summary>
+            Creates a new instance of the <see cref="T:Xunit.Sdk.IsTypeException"/> class.
+            </summary>
+            <param name="expectedTypeName">The expected type name</param>
+            <param name="actualTypeName">The actual type name</param>
+        </member>
+        <member name="M:Xunit.Sdk.IsTypeException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.NotEmptyException">
+            <summary>
+            Exception thrown when a collection is unexpectedly empty.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.NotEmptyException.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:Xunit.Sdk.NotEmptyException"/> class.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.NotEmptyException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.NotEqualException">
+            <summary>
+            Exception thrown when two values are unexpectedly equal.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.NotEqualException.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:Xunit.Sdk.NotEqualException"/> class.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.NotEqualException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.NotInRangeException">
+            <summary>
+            Exception thrown when a value is unexpectedly in the given range.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.NotInRangeException.#ctor(System.Object,System.Object,System.Object)">
+            <summary>
+            Creates a new instance of the <see cref="T:Xunit.Sdk.NotInRangeException"/> class.
+            </summary>
+            <param name="actual">The actual object value</param>
+            <param name="low">The low value of the range</param>
+            <param name="high">The high value of the range</param>
+        </member>
+        <member name="M:Xunit.Sdk.NotInRangeException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.NotInRangeException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.NotInRangeException.Actual">
+            <summary>
+            Gets the actual object value
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.NotInRangeException.High">
+            <summary>
+            Gets the high value of the range
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.NotInRangeException.Low">
+            <summary>
+            Gets the low value of the range
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.NotInRangeException.Message">
+            <summary>
+            Gets a message that describes the current exception.
+            </summary>
+            <returns>The error message that explains the reason for the exception, or an empty string("").</returns>
+        </member>
+        <member name="T:Xunit.Sdk.NotNullException">
+            <summary>
+            Exception thrown when an object is unexpectedly null.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.NotNullException.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:Xunit.Sdk.NotNullException"/> class.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.NotNullException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.NotSameException">
+            <summary>
+            Exception thrown when two values are unexpected the same instance.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.NotSameException.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:Xunit.Sdk.NotSameException"/> class.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.NotSameException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.NullException">
+            <summary>
+            Exception thrown when an object reference is unexpectedly not null.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.NullException.#ctor(System.Object)">
+            <summary>
+            Creates a new instance of the <see cref="T:Xunit.Sdk.NullException"/> class.
+            </summary>
+            <param name="actual"></param>
+        </member>
+        <member name="M:Xunit.Sdk.NullException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.ParameterCountMismatchException">
+            <summary>
+            Exception to be thrown from theory execution when the number of
+            parameter values does not the test method signature.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.ParameterCountMismatchException.#ctor">
+            <summary/>
+        </member>
+        <member name="M:Xunit.Sdk.ParameterCountMismatchException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary/>
+        </member>
+        <member name="T:Xunit.Sdk.PropertyChangedException">
+            <summary>
+            Exception thrown when code unexpectedly fails change a property.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.PropertyChangedException.#ctor(System.String)">
+            <summary>
+            Creates a new instance of the <see cref="T:Xunit.Sdk.PropertyChangedException"/> class. Call this constructor
+            when no exception was thrown.
+            </summary>
+            <param name="propertyName">The name of the property that was expected to be changed.</param>
+        </member>
+        <member name="M:Xunit.Sdk.PropertyChangedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.SameException">
+            <summary>
+            Exception thrown when two object references are unexpectedly not the same instance.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.SameException.#ctor(System.Object,System.Object)">
+            <summary>
+            Creates a new instance of the <see cref="T:Xunit.Sdk.SameException"/> class.
+            </summary>
+            <param name="expected">The expected object reference</param>
+            <param name="actual">The actual object reference</param>
+        </member>
+        <member name="M:Xunit.Sdk.SameException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.SingleException">
+            <summary>
+            Exception thrown when the collection did not contain exactly one element.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.SingleException.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.Sdk.SingleException"/> class.
+            </summary>
+            <param name="count">The numbers of items in the collection.</param>
+        </member>
+        <member name="M:Xunit.Sdk.SingleException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.ThrowsException">
+            <summary>
+            Exception thrown when code unexpectedly fails to throw an exception.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.ThrowsException.#ctor(System.Type)">
+            <summary>
+            Creates a new instance of the <see cref="T:Xunit.Sdk.ThrowsException"/> class. Call this constructor
+            when no exception was thrown.
+            </summary>
+            <param name="expectedType">The type of the exception that was expected</param>
+        </member>
+        <member name="M:Xunit.Sdk.ThrowsException.#ctor(System.Type,System.Exception)">
+            <summary>
+            Creates a new instance of the <see cref="T:Xunit.Sdk.ThrowsException"/> class. Call this constructor
+            when an exception of the wrong type was thrown.
+            </summary>
+            <param name="expectedType">The type of the exception that was expected</param>
+            <param name="actual">The actual exception that was thrown</param>
+        </member>
+        <member name="M:Xunit.Sdk.ThrowsException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.ThrowsException.#ctor(System.Type,System.String,System.String,System.String)">
+            <summary>
+            THIS CONSTRUCTOR IS FOR UNIT TESTING PURPOSES ONLY.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.ThrowsException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.ThrowsException.StackTrace">
+            <summary>
+            Gets a string representation of the frames on the call stack at the time the current exception was thrown.
+            </summary>
+            <returns>A string that describes the contents of the call stack, with the most recent method call appearing first.</returns>
+        </member>
+        <member name="T:Xunit.Sdk.TimeoutException">
+            <summary>
+            Exception thrown when a test method exceeds the given timeout value
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.TimeoutException.#ctor(System.Int64)">
+            <summary>
+            Creates a new instance of the <see cref="T:Xunit.Sdk.TimeoutException"/> class.
+            </summary>
+            <param name="timeout">The timeout value, in milliseconds</param>
+        </member>
+        <member name="M:Xunit.Sdk.TimeoutException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.TrueException">
+            <summary>
+            Exception thrown when a value is unexpectedly false.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.TrueException.#ctor(System.String)">
+            <summary>
+            Creates a new instance of the <see cref="T:Xunit.Sdk.TrueException"/> class.
+            </summary>
+            <param name="userMessage">The user message to be displayed, or null for the default message</param>
+        </member>
+        <member name="M:Xunit.Sdk.TrueException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.DataDiscoverer">
+            <summary>
+            Default implementation of <see cref="T:Xunit.Sdk.IDataDiscoverer"/>. Uses reflection to find the
+            data associated with <see cref="T:Xunit.Sdk.DataAttribute"/>; may return <c>null</c> when called
+            without reflection-based abstraction implementations.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.DataDiscoverer.GetData(Xunit.Abstractions.IAttributeInfo,Xunit.Abstractions.IMethodInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.DataDiscovererAttribute">
+            <summary>
+            An attribute used to decorate classes which derive from <see cref="T:Xunit.Sdk.DataAttribute"/>,
+            to indicate how data elements should be discovered.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.DataDiscovererAttribute.#ctor(System.String,System.String)">
+            <summary>
+            Initializes an instance of <see cref="T:Xunit.Sdk.DataDiscovererAttribute"/>.
+            </summary>
+            <param name="typeName">The fully qualified type name of the discoverer
+            (f.e., 'Xunit.Sdk.DataDiscoverer')</param>
+            <param name="assemblyName">The name of the assembly that the discoverer type
+            is located in, without file extension (f.e., 'xunit2')</param>
+        </member>
+        <member name="T:Xunit.Sdk.FactDiscoverer">
+            <summary>
+            Implementation of <see cref="T:Xunit.Sdk.IXunitDiscoverer"/> that supports finding test cases
+            on methods decorated with <see cref="T:Xunit.FactAttribute"/>.
+            </summary>
+        </member>
+        <member name="T:Xunit.Sdk.IXunitDiscoverer">
+            <summary>
+            Interface to be implemented by classes which are used to discover tests cases attached
+            to test methods that are attributed with <see cref="T:Xunit.FactAttribute"/> (or a subclass).
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.IXunitDiscoverer.Discover(Xunit.Abstractions.IAssemblyInfo,Xunit.Abstractions.ITypeInfo,Xunit.Abstractions.IMethodInfo,Xunit.Abstractions.IAttributeInfo)">
+            <summary>
+            Discover test cases from a test method.
+            </summary>
+            <param name="assembly">The test assembly.</param>
+            <param name="testClass">The test class.</param>
+            <param name="testMethod">The test method.</param>
+            <param name="factAttribute">The fact attribute attached to the test method.</param>
+            <returns>Returns zero or more test cases represented by the test method.</returns>
+        </member>
+        <member name="M:Xunit.Sdk.FactDiscoverer.Discover(Xunit.Abstractions.IAssemblyInfo,Xunit.Abstractions.ITypeInfo,Xunit.Abstractions.IMethodInfo,Xunit.Abstractions.IAttributeInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.ISourceInformationProvider">
+            <summary>
+            Represents a provider which gives source line information for a test case. Generally
+            consumed by an implementation of <see cref="T:Xunit.Abstractions.ITestFramework"/> during Find operations.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.ISourceInformationProvider.GetSourceInformation(Xunit.Abstractions.ITestCase)">
+            <summary>
+            Returns the source information for a test case.
+            </summary>
+            <param name="testCase">The test case to retrieve information for.</param>
+            <returns>The source information, with null string and int values when the information is not available.
+            Note: the tuple itself should never be null, only the interior data values inside the tuple.</returns>
+        </member>
+        <member name="T:Xunit.Sdk.TheoryDiscoverer">
+            <summary>
+            Implementation of <see cref="T:Xunit.Sdk.IXunitDiscoverer"/> that supports finding test cases
+            on methods decorated with <see cref="T:Xunit.TheoryAttribute"/>.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.TheoryDiscoverer.Discover(Xunit.Abstractions.IAssemblyInfo,Xunit.Abstractions.ITypeInfo,Xunit.Abstractions.IMethodInfo,Xunit.Abstractions.IAttributeInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.XunitDiscovererAttribute">
+            <summary>
+            An attribute used to decorate classes which derive from <see cref="T:Xunit.FactAttribute"/>,
+            to indicate how test cases should be discovered.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.XunitDiscovererAttribute.#ctor(System.String,System.String)">
+            <summary>
+            Initializes an instance of <see cref="T:Xunit.Sdk.XunitDiscovererAttribute"/>.
+            </summary>
+            <param name="typeName">The fully qualified type name of the discoverer
+            (f.e., 'Xunit.Sdk.FactDiscoverer')</param>
+            <param name="assemblyName">The name of the assembly that the discoverer type
+            is located in, without file extension (f.e., 'xunit2')</param>
+        </member>
+        <member name="T:Xunit.Sdk.XunitTestFramework">
+            <summary>
+            The implementation of <see cref="T:Xunit.Abstractions.ITestFramework"/> that supports discovery and
+            execution of unit tests linked against xunit2.dll.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.XunitTestFramework.GetDiscoverer(Xunit.Abstractions.IAssemblyInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.XunitTestFramework.GetExecutor(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.XunitTestFramework.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.XunitTestFrameworkDiscoverer">
+            <summary>
+            The implementation of <see cref="T:Xunit.Abstractions.ITestFrameworkDiscoverer"/> that supports discovery
+            of unit tests linked against xunit2.dll.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.XunitTestFrameworkDiscoverer.#ctor(Xunit.Abstractions.IAssemblyInfo,Xunit.Sdk.ISourceInformationProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.Sdk.XunitTestFrameworkDiscoverer"/> class.
+            </summary>
+            <param name="assemblyInfo">The test assembly.</param>
+            <param name="sourceProvider">The source information provider.</param>
+        </member>
+        <member name="M:Xunit.Sdk.XunitTestFrameworkDiscoverer.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.XunitTestFrameworkDiscoverer.Find(System.Boolean,Xunit.Abstractions.IMessageSink)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.XunitTestFrameworkDiscoverer.Find(System.String,System.Boolean,Xunit.Abstractions.IMessageSink)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.XunitTestFrameworkDiscoverer.FindImpl(Xunit.Abstractions.ITypeInfo,System.Boolean,Xunit.Abstractions.IMessageSink)">
+            <summary>
+            Core implementation to discover unit tests in a given test class.
+            </summary>
+            <param name="type">The test class.</param>
+            <param name="includeSourceInformation">Set to <c>true</c> to attempt to include source information.</param>
+            <param name="messageSink">The message sink to send discovery messages to.</param>
+            <returns>Returns <c>true</c> if discovery should continue; <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Xunit.Sdk.XunitTestFrameworkDiscoverer.Serialize(Xunit.Abstractions.ITestCase)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.XunitTestFrameworkExecutor">
+            <summary>
+            The implementation of <see cref="T:Xunit.Abstractions.ITestFrameworkExecutor"/> that supports execution
+            of unit tests linked against xunit2.dll.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.XunitTestFrameworkExecutor.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.Sdk.XunitTestFrameworkExecutor"/> class.
+            </summary>
+            <param name="assemblyFileName">Path of the test assembly.</param>
+        </member>
+        <member name="M:Xunit.Sdk.XunitTestFrameworkExecutor.Deserialize(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.XunitTestFrameworkExecutor.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.XunitTestFrameworkExecutor.Run(System.Collections.Generic.IEnumerable{Xunit.Abstractions.ITestCase},Xunit.Abstractions.IMessageSink)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.IMessageBus">
+            <summary>
+            This is an internal interface, and is not intended to be called from end-user code.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.IMessageBus.QueueMessage(Xunit.Abstractions.ITestMessage)">
+            <summary/>
+        </member>
+        <member name="T:Xunit.Sdk.MessageBus">
+            <summary>
+            This is an internal class, and is not intended to be called from end-user code.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.MessageBus.#ctor(Xunit.Abstractions.IMessageSink)">
+            <summary/>
+        </member>
+        <member name="M:Xunit.Sdk.MessageBus.Dispose">
+            <summary/>
+        </member>
+        <member name="M:Xunit.Sdk.MessageBus.QueueMessage(Xunit.Abstractions.ITestMessage)">
+            <summary/>
+        </member>
+        <member name="T:Xunit.Sdk.BeforeTestFinished">
+            <summary>
+            Default implementation of <see cref="T:Xunit.Abstractions.IBeforeTestFinished"/>.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.BeforeTestFinished.AttributeName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.BeforeTestFinished.TestCase">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.BeforeTestFinished.TestDisplayName">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.BeforeTestStarting">
+            <summary>
+            Default implementation of <see cref="T:Xunit.Abstractions.IBeforeTestStarting"/>.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.BeforeTestStarting.AttributeName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.BeforeTestStarting.TestCase">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.BeforeTestStarting.TestDisplayName">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.AfterTestFinished">
+            <summary>
+            Default implementation of <see cref="T:Xunit.Abstractions.IAfterTestFinished"/>.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.AfterTestFinished.AttributeName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.AfterTestFinished.TestCase">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.AfterTestFinished.TestDisplayName">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.AfterTestStarting">
+            <summary>
+            Default implementation of <see cref="T:Xunit.Abstractions.IAfterTestStarting"/>.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.AfterTestStarting.AttributeName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.AfterTestStarting.TestCase">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.AfterTestStarting.TestDisplayName">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.DelegatingMessageSink">
+            <summary>
+            Implementation of <see cref="T:Xunit.Abstractions.IMessageSink"/> that delegates to another implementation of
+            <see cref="T:Xunit.Abstractions.IMessageSink"/> while calling into a callback for each message.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.DelegatingMessageSink.#ctor(Xunit.Abstractions.IMessageSink,System.Action{Xunit.Abstractions.ITestMessage})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.Sdk.DelegatingMessageSink"/> class.
+            </summary>
+            <param name="innerSink">The inner message sink.</param>
+            <param name="callback">The callback.</param>
+        </member>
+        <member name="M:Xunit.Sdk.DelegatingMessageSink.OnMessage(Xunit.Abstractions.ITestMessage)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.DelegatingMessageSink.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.DelegatingMessageSink`1">
+            <summary>
+            Implementation of <see cref="T:Xunit.Abstractions.IMessageSink"/> that delegates to another implementation of
+            <see cref="T:Xunit.Abstractions.IMessageSink"/> while calling into a callback for each message. In addition,
+            it issues a <see cref="P:Xunit.Sdk.DelegatingMessageSink`1.Finished"/> event when a message of the type <typeparamref name="TFinalMessage"/>
+            is seen.
+            </summary>
+            <typeparam name="TFinalMessage">The type of the T final message.</typeparam>
+        </member>
+        <member name="M:Xunit.Sdk.DelegatingMessageSink`1.#ctor(Xunit.Abstractions.IMessageSink,System.Action{Xunit.Abstractions.ITestMessage})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.Sdk.DelegatingMessageSink"/> class.
+            </summary>
+            <param name="innerSink">The inner message sink.</param>
+            <param name="callback">The callback.</param>
+        </member>
+        <member name="M:Xunit.Sdk.DelegatingMessageSink`1.OnMessage(Xunit.Abstractions.ITestMessage)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.DelegatingMessageSink`1.FinalMessage">
+            <summary>
+            The final message that was seen that caused <see cref="P:Xunit.Sdk.DelegatingMessageSink`1.Finished"/> to be triggered.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.DelegatingMessageSink`1.Finished">
+            <summary>
+            An event that is triggered when a message of type <typeparamref name="TFinalMessage" /> is seen.
+            </summary>
+        </member>
+        <member name="T:Xunit.Sdk.TestClassConstructionFinished">
+            <summary>
+            Default implementation of <see cref="T:Xunit.Abstractions.ITestClassConstructionFinished"/>.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.TestClassConstructionFinished.TestCase">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestClassConstructionFinished.TestDisplayName">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.TestClassConstructionStarting">
+            <summary>
+            Default implementation of <see cref="T:Xunit.Abstractions.ITestClassConstructionStarting"/>.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.TestClassConstructionStarting.TestCase">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestClassConstructionStarting.TestDisplayName">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.TestClassDisposeFinished">
+            <summary>
+            Default implementation of <see cref="T:Xunit.Abstractions.ITestClassDisposeFinished"/>.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.TestClassDisposeFinished.TestCase">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestClassDisposeFinished.TestDisplayName">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.TestClassDisposeStarting">
+            <summary>
+            Default implementation of <see cref="T:Xunit.Abstractions.ITestClassDisposeStarting"/>.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.TestClassDisposeStarting.TestCase">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestClassDisposeStarting.TestDisplayName">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.TestFailed">
+            <summary>
+            Default implementation of <see cref="T:Xunit.Abstractions.ITestFailed"/>.
+            </summary>
+        </member>
+        <member name="T:Xunit.Sdk.TestResultMessage">
+            <summary>
+            Default implementation of <see cref="T:Xunit.Abstractions.ITestResultMessage"/>.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.TestResultMessage.TestDisplayName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestResultMessage.ExecutionTime">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestResultMessage.TestCase">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.TestFailed.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.Sdk.TestFailed"/> class.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.TestFailed.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.Sdk.TestFailed"/> class.
+            </summary>
+            <param name="ex">The exception that caused the test to fail.</param>
+        </member>
+        <member name="P:Xunit.Sdk.TestFailed.ExceptionType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestFailed.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestFailed.StackTrace">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.TestMethodFinished">
+            <summary>
+            Default implementation of <see cref="T:Xunit.Abstractions.ITestMethodFinished"/>.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.TestMethodFinished.ClassName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestMethodFinished.MethodName">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.TestMethodStarting">
+            <summary>
+            Default implementation of <see cref="T:Xunit.Abstractions.ITestMethodStarting"/>.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.TestMethodStarting.ClassName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestMethodStarting.MethodName">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.TestSkipped">
+            <summary>
+            Default implementation of <see cref="T:Xunit.Abstractions.ITestSkipped"/>.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.TestSkipped.Reason">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.DiscoveryCompleteMessage">
+            <summary>
+            Default implementation of <see cref="T:Xunit.Abstractions.IDiscoveryCompleteMessage"/>.
+            </summary>
+        </member>
+        <member name="T:Xunit.Sdk.ErrorMessage">
+            <summary>
+            Default implementation of <see cref="T:Xunit.Abstractions.IErrorMessage"/>.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.ErrorMessage.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.Sdk.ErrorMessage"/> class.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.ErrorMessage.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.Sdk.ErrorMessage"/> class.
+            </summary>
+            <param name="ex">The exception that represents the error message.</param>
+        </member>
+        <member name="P:Xunit.Sdk.ErrorMessage.ExceptionType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.ErrorMessage.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.ErrorMessage.StackTrace">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.TestCaseFinished">
+            <summary>
+            Default implementation of <see cref="T:Xunit.Abstractions.ITestCaseFinished"/>.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.TestCaseFinished.Assembly">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestCaseFinished.ExecutionTime">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestCaseFinished.TestCase">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestCaseFinished.TestsFailed">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestCaseFinished.TestsRun">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestCaseFinished.TestsSkipped">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.TestCaseStarting">
+            <summary>
+            Default implementation of <see cref="T:Xunit.Abstractions.ITestCaseStarting"/>.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.TestCaseStarting.TestCase">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.TestClassFinished">
+            <summary>
+            Default implementation of <see cref="T:Xunit.Abstractions.ITestClassFinished"/>.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.TestClassFinished.Assembly">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestClassFinished.ClassName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestClassFinished.ExecutionTime">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestClassFinished.TestsFailed">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestClassFinished.TestsRun">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestClassFinished.TestsSkipped">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.TestClassStarting">
+            <summary>
+            Default implementation of <see cref="T:Xunit.Abstractions.ITestClassStarting"/>.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.TestClassStarting.ClassName">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.TestCollectionFinished">
+            <summary>
+            Default implementation of <see cref="T:Xunit.Abstractions.ITestCollectionFinished"/>.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.TestCollectionFinished.Assembly">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestCollectionFinished.ExecutionTime">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestCollectionFinished.TestsFailed">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestCollectionFinished.TestsRun">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestCollectionFinished.TestsSkipped">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.TestCollectionStarting">
+            <summary>
+            Default implementation of <see cref="T:Xunit.Abstractions.ITestCollectionStarting"/>.
+            </summary>
+        </member>
+        <member name="T:Xunit.Sdk.TestFinished">
+            <summary>
+            Default implementation of <see cref="T:Xunit.Abstractions.ITestFinished"/>.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.TestFinished.TestDisplayName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestFinished.ExecutionTime">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestFinished.TestCase">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.TestPassed">
+            <summary>
+            Default implementation of <see cref="T:Xunit.Abstractions.ITestPassed"/>.
+            </summary>
+        </member>
+        <member name="T:Xunit.Sdk.TestStarting">
+            <summary>
+            Default implementation of <see cref="T:Xunit.Abstractions.ITestStarting"/>.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.TestStarting.TestCase">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestStarting.TestDisplayName">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.TestAssemblyFinished">
+            <summary>
+            Default implementation of <see cref="T:Xunit.Abstractions.ITestAssemblyFinished"/>.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.TestAssemblyFinished.Assembly">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestAssemblyFinished.ExecutionTime">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestAssemblyFinished.TestsFailed">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestAssemblyFinished.TestsRun">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.TestAssemblyFinished.TestsSkipped">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.TestAssemblyStarting">
+            <summary>
+            Default implementation of <see cref="T:Xunit.Abstractions.ITestAssemblyStarting"/>.
+            </summary>
+        </member>
+        <member name="T:Xunit.Sdk.TestCaseDiscoveryMessage">
+            <summary>
+            Default implementation of <see cref="T:Xunit.Abstractions.ITestCaseDiscoveryMessage"/>.
+            </summary>
+        </member>
+        <member name="P:Xunit.Sdk.TestCaseDiscoveryMessage.TestCase">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.ReflectionTypeInfo">
+            <summary>
+            Reflection-based implementation of <see cref="T:Xunit.Abstractions.IReflectionTypeInfo"/>.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.ReflectionTypeInfo.#ctor(System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.Sdk.ReflectionTypeInfo"/> class.
+            </summary>
+            <param name="type">The type to wrap.</param>
+        </member>
+        <member name="M:Xunit.Sdk.ReflectionTypeInfo.GetCustomAttributes(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.ReflectionTypeInfo.GetMethods(System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.ReflectionTypeInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.ReflectionTypeInfo.Assembly">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.ReflectionTypeInfo.BaseType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.ReflectionTypeInfo.Interfaces">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.ReflectionTypeInfo.IsAbstract">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.ReflectionTypeInfo.IsSealed">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.ReflectionTypeInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.ReflectionTypeInfo.Type">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.ReflectionParameterInfo">
+            <summary>
+            Reflection-based implementation of <see cref="T:Xunit.Abstractions.IReflectionParameterInfo"/>.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.ReflectionParameterInfo.#ctor(System.Reflection.ParameterInfo)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.Sdk.ReflectionParameterInfo"/> class.
+            </summary>
+            <param name="parameterInfo">The parameter to be wrapped.</param>
+        </member>
+        <member name="P:Xunit.Sdk.ReflectionParameterInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.ReflectionParameterInfo.ParameterInfo">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.ReflectionMethodInfo">
+            <summary>
+            Reflection-based implementation of <see cref="T:Xunit.Abstractions.IReflectionMethodInfo"/>.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.ReflectionMethodInfo.#ctor(System.Reflection.MethodInfo)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.Sdk.ReflectionMethodInfo"/> class.
+            </summary>
+            <param name="method">The method to be wrapped.</param>
+        </member>
+        <member name="M:Xunit.Sdk.ReflectionMethodInfo.GetCustomAttributes(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.ReflectionMethodInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.ReflectionMethodInfo.GetParameters">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.ReflectionMethodInfo.IsAbstract">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.ReflectionMethodInfo.IsPublic">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.ReflectionMethodInfo.IsStatic">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.ReflectionMethodInfo.MethodInfo">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.ReflectionMethodInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.ReflectionMethodInfo.ReturnType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.ReflectionMethodInfo.Type">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.ReflectionAssemblyInfo">
+            <summary>
+            Reflection-based implementation of <see cref="T:Xunit.Abstractions.IReflectionAssemblyInfo"/>.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.ReflectionAssemblyInfo.#ctor(System.Reflection.Assembly)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.Sdk.ReflectionAssemblyInfo"/> class.
+            </summary>
+            <param name="assembly">The assembly to be wrapped.</param>
+        </member>
+        <member name="M:Xunit.Sdk.ReflectionAssemblyInfo.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.Sdk.ReflectionAssemblyInfo"/> class.
+            </summary>
+            <param name="assemblyFileName">The assembly to be wrapped.</param>
+        </member>
+        <member name="M:Xunit.Sdk.ReflectionAssemblyInfo.GetCustomAttributes(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.ReflectionAssemblyInfo.GetType(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.ReflectionAssemblyInfo.GetTypes(System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.ReflectionAssemblyInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.ReflectionAssemblyInfo.Assembly">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.ReflectionAssemblyInfo.AssemblyPath">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.ReflectionAssemblyInfo.Name">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.ReflectionAttributeInfo">
+            <summary>
+            Reflection-based implementation of <see cref="T:Xunit.Abstractions.IReflectionAttributeInfo"/>.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.ReflectionAttributeInfo.#ctor(System.Reflection.CustomAttributeData)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xunit.Sdk.ReflectionAttributeInfo"/> class.
+            </summary>
+            <param name="attribute">The attribute to be wrapped.</param>
+        </member>
+        <member name="M:Xunit.Sdk.ReflectionAttributeInfo.GetConstructorArguments">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.ReflectionAttributeInfo.GetCustomAttributes(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.ReflectionAttributeInfo.GetNamedArgument``1(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.ReflectionAttributeInfo.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.ReflectionAttributeInfo.Attribute">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.ReflectionAttributeInfo.AttributeData">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.Sdk.Reflector">
+            <summary>
+            Wrapper to implement types from xunit.abstractions.dll using reflection.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.Reflector.Wrap(System.Reflection.Assembly)">
+            <summary>
+            Converts an <see cref="T:System.Reflection.Assembly"/> into an <see cref="T:Xunit.Abstractions.IReflectionAssemblyInfo"/>.
+            </summary>
+            <param name="assembly">The assembly to wrap.</param>
+            <returns>The wrapper</returns>
+        </member>
+        <member name="M:Xunit.Sdk.Reflector.Wrap(System.Reflection.CustomAttributeData)">
+            <summary>
+            Converts an <see cref="T:System.Attribute"/> into an <see cref="T:Xunit.Abstractions.IAttributeInfo"/> using reflection.
+            </summary>
+            <param name="attribute">The attribute to wrap.</param>
+            <returns>The wrapper</returns>
+        </member>
+        <member name="M:Xunit.Sdk.Reflector.Wrap(System.Reflection.MethodInfo)">
+            <summary>
+            Converts a <see cref="T:System.Reflection.MethodInfo"/> into an <see cref="T:Xunit.Abstractions.IMethodInfo"/> using reflection.
+            </summary>
+            <param name="method">The method to wrap</param>
+            <returns>The wrapper</returns>
+        </member>
+        <member name="M:Xunit.Sdk.Reflector.Wrap(System.Reflection.ParameterInfo)">
+            <summary>
+            Converts a <see cref="T:System.Reflection.ParameterInfo"/> into an <see cref="T:Xunit.Abstractions.IParameterInfo"/> using reflection.
+            </summary>
+            <param name="parameter">THe parameter to wrap</param>
+            <returns>The wrapper</returns>
+        </member>
+        <member name="M:Xunit.Sdk.Reflector.Wrap(System.Type)">
+            <summary>
+            Converts a <see cref="T:System.Type"/> into an <see cref="T:Xunit.Abstractions.ITypeInfo"/> using reflection.
+            </summary>
+            <param name="type">The type to wrap</param>
+            <returns>The wrapper</returns>
+        </member>
+        <member name="T:Xunit.Sdk.SerializationHelper">
+            <summary>
+            Serializes and de-serializes <see cref="T:Xunit.Abstractions.ITestCase"/> instances using <see cref="T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter"/>,
+            <see cref="M:System.Convert.ToBase64String(System.Byte[])"/>, and <see cref="M:System.Convert.FromBase64String(System.String)"/>.
+            </summary>
+        </member>
+        <member name="M:Xunit.Sdk.SerializationHelper.Deserialize``1(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Xunit.Sdk.SerializationHelper.Serialize(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Xunit.TheoryAttribute">
+            <summary>
+            Marks a test method as being a data theory. Data theories are tests which are fed
+            various bits of data from a data source, mapping to parameters on the test method.
+            If the data source contains multiple rows, then the test method is executed
+            multiple times (once with each data row). Data is provided by attributes which
+            derive from <see cref="T:Xunit.Sdk.DataAttribute"/> (notably, <see cref="T:Xunit.InlineDataAttribute"/> and
+            <see cref="T:Xunit.PropertyDataAttribute"/>).
+            </summary>
+        </member>
+        <member name="T:Xunit.TraitAttribute">
+            <summary>
+            Attribute used to decorate a test method with arbitrary name/value pairs ("traits").
+            </summary>
+        </member>
+        <member name="M:Xunit.TraitAttribute.#ctor(System.String,System.String)">
+            <summary>
+            Creates a new instance of the <see cref="T:Xunit.TraitAttribute"/> class.
+            </summary>
+            <param name="name">The trait name</param>
+            <param name="value">The trait value</param>
+        </member>
+        <member name="P:Xunit.TraitAttribute.Name">
+            <summary>
+            Gets the trait name.
+            </summary>
+        </member>
+        <member name="P:Xunit.TraitAttribute.TypeId">
+            <inheritdoc/>
+        </member>
+        <member name="P:Xunit.TraitAttribute.Value">
+            <summary>
+            Gets the trait value.
+            </summary>
+        </member>
+    </members>
+</doc>
