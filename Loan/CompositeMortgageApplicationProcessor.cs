@@ -22,5 +22,21 @@ namespace Ploeh.Samples.Loan
                    from r in n.ProduceOffer(application)
                    select r;
         }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as CompositeMortgageApplicationProcessor;
+            if (other == null)
+                return base.Equals(obj);
+
+            return this.Nodes.SequenceEqual(other.Nodes);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Nodes
+                .Select(n => n.GetHashCode())
+                .Aggregate((x, y) => x ^ y);
+        }
     }
 }

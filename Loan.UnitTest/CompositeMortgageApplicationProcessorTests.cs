@@ -60,5 +60,64 @@ namespace Ploeh.Samples.Loan.UnitTest
             var expected = new[] { r1, r2, r3, r4, r5, r6, r7, r8, r9 };
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void SutEqualsOtherWithSameNodes()
+        {
+            // Arrange
+            var moqRepo = new MockRepository(MockBehavior.Default);
+            var nodes = new List<IMortgageApplicationProcessor>
+            {
+                moqRepo.Create<IMortgageApplicationProcessor>().Object,
+                moqRepo.Create<IMortgageApplicationProcessor>().Object,
+                moqRepo.Create<IMortgageApplicationProcessor>().Object
+            };
+
+            var sut = new CompositeMortgageApplicationProcessor();
+            nodes.ForEach(sut.Nodes.Add);
+
+            var other = new CompositeMortgageApplicationProcessor();
+            nodes.ForEach(other.Nodes.Add);
+
+            // Act
+            var actual = sut.Equals(other);
+
+            // Arrange
+            Assert.True(actual);
+        }
+
+        [Fact]
+        public void SutDoesNotEqualAnonymousObject()
+        {
+            var sut = new CompositeMortgageApplicationProcessor();
+            var anonymous = new object();
+
+            var actual = sut.Equals(anonymous);
+
+            Assert.False(actual);
+        }
+
+        [Fact]
+        public void SutDoesNotEqualOtherWithDifferentNodes()
+        {
+            // Arrange
+            var moqRepo = new MockRepository(MockBehavior.Default);
+
+            var sut = new CompositeMortgageApplicationProcessor();
+            sut.Nodes.Add(moqRepo.Create<IMortgageApplicationProcessor>().Object);
+            sut.Nodes.Add(moqRepo.Create<IMortgageApplicationProcessor>().Object);
+            sut.Nodes.Add(moqRepo.Create<IMortgageApplicationProcessor>().Object);
+
+            var other = new CompositeMortgageApplicationProcessor();
+            other.Nodes.Add(moqRepo.Create<IMortgageApplicationProcessor>().Object);
+            other.Nodes.Add(moqRepo.Create<IMortgageApplicationProcessor>().Object);
+            other.Nodes.Add(moqRepo.Create<IMortgageApplicationProcessor>().Object);
+
+            // Act
+            var actual = sut.Equals(other);
+
+            // Assert
+            Assert.False(actual);
+        }
     }
 }
