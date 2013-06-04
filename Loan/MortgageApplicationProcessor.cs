@@ -12,13 +12,16 @@ namespace Ploeh.Samples.Loan
     {
         private readonly ILocationProvider locationProvider;
         private readonly ITimeProvider timeProvider;
+        private readonly IOfferService offerService;
 
         public MortgageApplicationProcessor(
             ILocationProvider locationProvider,
-            ITimeProvider timeProvider)
+            ITimeProvider timeProvider,
+            IOfferService offerService)
         {
             this.locationProvider = locationProvider;
             this.timeProvider = timeProvider;
+            this.offerService = offerService;
         }
 
         public IEnumerable<IRendering> ProduceOffer(MortgageApplication application)
@@ -185,6 +188,17 @@ namespace Ploeh.Samples.Loan
                 new TextRendering(
                     " " + application.DesiredFrequency));
             renderings.Add(new LineBreakRendering());
+
+            /*
+             * Offer section
+             * */
+
+            renderings.Add(new Heading1Rendering("Loan offer"));
+            renderings.Add(new TextRendering("It gives us great pleasure to extend to you the following loan offer, lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
+
+            var offer = this.offerService.GetOffer(application);
+
+            // Imaging that the offer is being rendered below...
 
             return renderings;
         }

@@ -8,7 +8,8 @@ open Ploeh.Samples.Loan.TestDoubles
 let processor =
     MortgageApplicationProcessor(
         StubLocationProvider(),
-        RealTimeProvider())
+        RealTimeProvider(),
+        StubOfferService())
 
 let renderer = MarkdownRenderer()
 

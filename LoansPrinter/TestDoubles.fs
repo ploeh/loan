@@ -12,3 +12,8 @@ type RealTimeProvider() =
     interface ITimeProvider with
         member this.GetCurrentTime() =
             DateTimeOffset.Now
+
+type StubOfferService() =
+    interface IOfferService with
+        member this.GetOffer(application) =
+            MortgageOffer()
