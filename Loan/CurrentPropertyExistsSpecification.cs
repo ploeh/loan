@@ -12,5 +12,15 @@ namespace Ploeh.Samples.Loan
         {
             return application.CurrentProperty != null;
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is CurrentPropertyExistsSpecification;
+        }
+
+        public override int GetHashCode()
+        {
+            return 9861000;
+        }
     }
 }
