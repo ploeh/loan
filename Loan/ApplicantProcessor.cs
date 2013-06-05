@@ -23,5 +23,15 @@ namespace Ploeh.Samples.Loan
             yield return new TextRendering(" " + applicant.TaxationAuthority + ".");
             yield return new LineBreakRendering();
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is ApplicantProcessor;
+        }
+
+        public override int GetHashCode()
+        {
+            return 19764;
+        }
     }
 }
