@@ -51,6 +51,7 @@
     <Compile Include="CurrentPropertyMortgageApplicationProcessor.cs" />
     <Compile Include="CurrentPropertySoldAsFinancingMortgageApplicationSpecification.cs" />
     <Compile Include="DateAndLocationMortgageApplicationProcessor.cs" />
+    <Compile Include="DesiredLoanMortgageApplicationProcessor.cs" />
     <Compile Include="FinancingHeadlineMortgageApplicationProcessor.cs" />
     <Compile Include="GreetingMortgageApplicationProcessor.cs" />
     <Compile Include="ILocationProvider.cs" />
