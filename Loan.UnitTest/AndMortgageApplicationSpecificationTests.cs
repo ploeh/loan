@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 using Ploeh.Samples.Loan;
+using Moq;
+using Ploeh.Samples.Loan.DataCollection;
 
 namespace Ploeh.Samples.Loan.UnitTest
 {
@@ -15,6 +17,41 @@ namespace Ploeh.Samples.Loan.UnitTest
         {
             var sut = new AndMortgageApplicationSpecification();
             Assert.IsAssignableFrom<IMortgageApplicationSpecification>(sut);
+        }
+
+        [Theory]
+        [InlineData(true , true , true , true )]
+        [InlineData(false, true , true , false)]
+        [InlineData(true , false, true , false)]
+        [InlineData(true , true , false, false)]
+        [InlineData(true , true , false, false)]
+        [InlineData(false, false, false, false)]
+        public void IsSatisfiedByReturnsCorrectResult(
+            bool b1,
+            bool b2,
+            bool b3,
+            bool expected)
+        {
+            // Arrange
+            var application = new MortgageApplication();
+
+            var spec1 = new Mock<IMortgageApplicationSpecification>();
+            var spec2 = new Mock<IMortgageApplicationSpecification>();            
+            var spec3 = new Mock<IMortgageApplicationSpecification>();
+            spec1.Setup(s => s.IsSatisfiedBy(application)).Returns(b1);
+            spec2.Setup(s => s.IsSatisfiedBy(application)).Returns(b2);
+            spec3.Setup(s => s.IsSatisfiedBy(application)).Returns(b3);
+
+            var sut = new AndMortgageApplicationSpecification();
+            sut.Specifications.Add(spec1.Object);
+            sut.Specifications.Add(spec2.Object);
+            sut.Specifications.Add(spec3.Object);
+
+            // Act
+            var actual = sut.IsSatisfiedBy(application);
+
+            // Assert
+            Assert.Equal(expected, actual);
         }
     }
 }

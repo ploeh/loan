@@ -8,9 +8,16 @@ namespace Ploeh.Samples.Loan
 {
     public class AndMortgageApplicationSpecification : IMortgageApplicationSpecification
     {
+        public IList<IMortgageApplicationSpecification> Specifications;
+
+        public AndMortgageApplicationSpecification()
+        {
+            this.Specifications = new List<IMortgageApplicationSpecification>();
+        }
+
         public bool IsSatisfiedBy(MortgageApplication application)
         {
-            return false;
+            return this.Specifications.All(s => s.IsSatisfiedBy(application));
         }
     }
 }
