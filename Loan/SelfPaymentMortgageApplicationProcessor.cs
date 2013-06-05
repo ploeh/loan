@@ -15,5 +15,15 @@ namespace Ploeh.Samples.Loan
             yield return new TextRendering(" " + application.SelfPayment);
             yield return new LineBreakRendering();
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is SelfPaymentMortgageApplicationProcessor;
+        }
+
+        public override int GetHashCode()
+        {
+            return 1933;
+        }
     }
 }
