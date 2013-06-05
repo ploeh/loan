@@ -58,5 +58,76 @@ namespace Ploeh.Samples.Loan.UnitTest
             };
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void SutEqualsOtherWithSameProviders()
+        {
+            var moqRepo = new MockRepository(MockBehavior.Default);
+            var sut = new DateAndLocationMortgageApplicationProcessor
+            {
+                LocationProvider = moqRepo.Create<ILocationProvider>().Object,
+                TimeProvider = moqRepo.Create<ITimeProvider>().Object
+            };
+            var other = new DateAndLocationMortgageApplicationProcessor
+            {
+                LocationProvider = sut.LocationProvider,
+                TimeProvider = sut.TimeProvider
+            };
+
+            var actual = sut.Equals(other);
+
+            Assert.True(actual);
+        }
+
+        [Fact]
+        public void SutDoesNotEqualAnonymousObject()
+        {
+            var sut = new DateAndLocationMortgageApplicationProcessor();
+            var anonymous = new object();
+
+            var actual = sut.Equals(anonymous);
+
+            Assert.False(actual);
+        }
+
+        [Fact]
+        public void SutDoesNotEqualOtherWithDifferentLocationProvider()
+        {
+            var moqRepo = new MockRepository(MockBehavior.Default);
+            var sut = new DateAndLocationMortgageApplicationProcessor
+            {
+                LocationProvider = moqRepo.Create<ILocationProvider>().Object,
+                TimeProvider = moqRepo.Create<ITimeProvider>().Object
+            };
+            var other = new DateAndLocationMortgageApplicationProcessor
+            {
+                LocationProvider = moqRepo.Create<ILocationProvider>().Object,
+                TimeProvider = sut.TimeProvider
+            };
+
+            var actual = sut.Equals(other);
+
+            Assert.False(actual);
+        }
+
+        [Fact]
+        public void SutDoesNotEqualOtherWithDifferentTimeProvider()
+        {
+            var moqRepo = new MockRepository(MockBehavior.Default);
+            var sut = new DateAndLocationMortgageApplicationProcessor
+            {
+                LocationProvider = moqRepo.Create<ILocationProvider>().Object,
+                TimeProvider = moqRepo.Create<ITimeProvider>().Object
+            };
+            var other = new DateAndLocationMortgageApplicationProcessor
+            {
+                LocationProvider = sut.LocationProvider,
+                TimeProvider = moqRepo.Create<ITimeProvider>().Object
+            };
+
+            var actual = sut.Equals(other);
+
+            Assert.False(actual);
+        }
     }
 }
