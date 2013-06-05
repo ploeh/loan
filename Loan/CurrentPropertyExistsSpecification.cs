@@ -10,7 +10,7 @@ namespace Ploeh.Samples.Loan
     {
         public bool IsSatisfiedBy(MortgageApplication application)
         {
-            return false;
+            return application.CurrentProperty != null;
         }
     }
 }
