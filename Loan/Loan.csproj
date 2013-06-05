@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdjustableRateAnnuityOffer.cs" />
+    <Compile Include="ApplicantProcessor.cs" />
     <Compile Include="ApplicationDetailsHeadlineMortgageApplicationProcessor.cs" />
     <Compile Include="CompositeMortgageApplicationProcessor.cs" />
     <Compile Include="DateAndLocationMortgageApplicationProcessor.cs" />
