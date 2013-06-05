@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="CompositeMortgageApplicationProcessorTests.cs" />
     <Compile Include="DateAndLocationMortgageApplicationProcessorTests.cs" />
+    <Compile Include="GreetingMortgageApplicationProcessorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

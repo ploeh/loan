@@ -42,6 +42,7 @@
     <Compile Include="AdjustableRateAnnuityOffer.cs" />
     <Compile Include="CompositeMortgageApplicationProcessor.cs" />
     <Compile Include="DateAndLocationMortgageApplicationProcessor.cs" />
+    <Compile Include="GreetingMortgageApplicationProcessor.cs" />
     <Compile Include="ILocationProvider.cs" />
     <Compile Include="IMortgageApplicationProcessor.cs" />
     <Compile Include="InterestOnlyOffer.cs" />
