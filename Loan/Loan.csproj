@@ -47,6 +47,7 @@
     <Compile Include="ApplicationDetailsHeadlineMortgageApplicationProcessor.cs" />
     <Compile Include="CompositeMortgageApplicationProcessor.cs" />
     <Compile Include="ConditionalMortgageApplicationProcessor.cs" />
+    <Compile Include="CurrentPropertyExistsSpecification.cs" />
     <Compile Include="DateAndLocationMortgageApplicationProcessor.cs" />
     <Compile Include="FinancingHeadlineMortgageApplicationProcessor.cs" />
     <Compile Include="GreetingMortgageApplicationProcessor.cs" />
