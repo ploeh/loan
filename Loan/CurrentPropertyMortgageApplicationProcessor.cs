@@ -14,7 +14,10 @@ namespace Ploeh.Samples.Loan
             yield return new TextRendering("Current property will be sold to finance new property.");
             yield return new LineBreakRendering();
 
-            var p = new PropertyProcessor();
+            var p = new PropertyProcessor
+            {
+                PriceText = "Estimated sales price"
+            };
             foreach (var r in p.ProduceRenderings(application.CurrentProperty))
                 yield return r;
         }

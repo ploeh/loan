@@ -13,16 +13,20 @@ namespace Ploeh.Samples.Loan.UnitTest
     public class PropertyProcessorTests
     {
         [Theory]
-        [InlineData("Main Street 7", "14873 Anywhere", "Norway", 184820, 285)]
-        [InlineData("Side Street 5", "8888 Somewhere", "Norway", 992829, 567)]
+        [InlineData("Main Street 7", "14873 Anywhere", "Norway", 184820, 285, "Estimated sales price")]
+        [InlineData("Side Street 5", "8888 Somewhere", "Norway", 992829, 567, "Asking price")]
         public void ProduceRenderingsReturnsCorrectResult(
             string street,
             string postalCode,
             string country,
             int price,
-            int size)
+            int size,
+            string priceText)
         {
-            var sut = new PropertyProcessor();
+            var sut = new PropertyProcessor
+            {
+                PriceText = priceText
+            };
             var property = new Property
             {
                 Address = new Address
@@ -46,7 +50,7 @@ namespace Ploeh.Samples.Loan.UnitTest
                     postalCode + ", " +
                     country + ". "),
                 new LineBreakRendering(),
-                new BoldRendering("Estimated sales price:"),
+                new BoldRendering(priceText + ":"),
                 new TextRendering(" " + price),
                 new LineBreakRendering(),
                 new BoldRendering("Size:"),

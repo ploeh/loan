@@ -9,6 +9,8 @@ namespace Ploeh.Samples.Loan
 {
     public class PropertyProcessor
     {
+        public string PriceText;
+
         public IEnumerable<IRendering> ProduceRenderings(Property property)
         {
             yield return new BoldRendering("Address:");
@@ -19,7 +21,7 @@ namespace Ploeh.Samples.Loan
                 property.Address.Country + ". ");
             yield return new LineBreakRendering();
 
-            yield return new BoldRendering("Estimated sales price:");
+            yield return new BoldRendering(this.PriceText + ":");
             yield return new TextRendering(" " + property.Price);
             yield return new LineBreakRendering();
 

@@ -52,7 +52,7 @@ namespace Ploeh.Samples.Loan.UnitTest
                 new TextRendering("Current property will be sold to finance new property."),
                 new LineBreakRendering(),
             }
-            .Concat(new PropertyProcessor().ProduceRenderings(application.CurrentProperty));
+            .Concat(new PropertyProcessor { PriceText = "Estimated sales price" }.ProduceRenderings(application.CurrentProperty));
             Assert.Equal(expected, actual);
         }
 
