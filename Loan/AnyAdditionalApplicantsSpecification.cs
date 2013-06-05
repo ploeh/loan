@@ -12,5 +12,15 @@ namespace Ploeh.Samples.Loan
         {
             return application.AdditionalApplicants.Any();
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is AnyAdditionalApplicantsSpecification;
+        }
+
+        public override int GetHashCode()
+        {
+            return 105;
+        }
     }
 }

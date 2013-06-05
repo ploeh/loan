@@ -41,5 +41,27 @@ namespace Ploeh.Samples.Loan.UnitTest
 
             Assert.False(actual);
         }
+
+        [Fact]
+        public void SutEqualsOther()
+        {
+            var sut = new AnyAdditionalApplicantsSpecification();
+            var other = new AnyAdditionalApplicantsSpecification();
+
+            var actual = sut.Equals(other);
+
+            Assert.True(actual);
+        }
+
+        [Fact]
+        public void SutDoesNotEqualAnonymousObject()
+        {
+            var sut = new AnyAdditionalApplicantsSpecification();
+            var anonymous = new object();
+
+            var actual = sut.Equals(anonymous);
+
+            Assert.False(actual);
+        }
     }
 }
