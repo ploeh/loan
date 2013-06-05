@@ -33,5 +33,27 @@ namespace Ploeh.Samples.Loan.UnitTest
             };
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void SutEqualsOther()
+        {
+            var sut = new FinancingHeadlineMortgageApplicationProcessor();
+            var other = new FinancingHeadlineMortgageApplicationProcessor();
+
+            var actual = sut.Equals(other);
+
+            Assert.True(actual);
+        }
+
+        [Fact]
+        public void SutDoesNotEqualAnonymousObject()
+        {
+            var sut = new FinancingHeadlineMortgageApplicationProcessor();
+            var anonymous = new object();
+
+            var actual = sut.Equals(anonymous);
+
+            Assert.False(actual);
+        }
     }
 }

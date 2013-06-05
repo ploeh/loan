@@ -14,5 +14,15 @@ namespace Ploeh.Samples.Loan
         {
             yield return new Heading2Rendering("Financing");
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is FinancingHeadlineMortgageApplicationProcessor;
+        }
+
+        public override int GetHashCode()
+        {
+            return 1450;
+        }
     }
 }
