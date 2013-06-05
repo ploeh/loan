@@ -29,5 +29,19 @@ namespace Ploeh.Samples.Loan.Render
         {
             return new BulletRendering(text);
         }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as BulletRendering;
+            if (other == null)
+                return base.Equals(obj);
+
+            return object.Equals(this.text, other.text);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.GetHashCode();
+        }
     }
 }

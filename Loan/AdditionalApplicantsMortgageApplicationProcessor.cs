@@ -12,7 +12,17 @@ namespace Ploeh.Samples.Loan
     {
         public IEnumerable<IRendering> ProduceOffer(MortgageApplication application)
         {
-            yield break;
+            yield return new BoldRendering("Additional applicants:");
+            yield return new LineBreakRendering();
+
+            var p = new ApplicantProcessor();
+
+            foreach (var a in application.AdditionalApplicants)
+            {
+                yield return new BulletRendering("");
+                foreach (var r in p.ProduceRenderings(a))
+                    yield return r;
+            }
         }
     }
 }
