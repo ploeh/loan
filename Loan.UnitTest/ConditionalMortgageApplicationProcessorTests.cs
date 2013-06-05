@@ -79,5 +79,73 @@ namespace Ploeh.Samples.Loan.UnitTest
             // Assert
             Assert.Empty(actual);
         }
+
+        [Fact]
+        public void SutEqualsOtherWithSameDependencies()
+        {
+            var sut = new ConditionalMortgageApplicationProcessor
+            {
+                Specification = new Mock<IMortgageApplicationSpecification>().Object,
+                TruthProcessor = new Mock<IMortgageApplicationProcessor>().Object
+            };
+            var other = new ConditionalMortgageApplicationProcessor
+            {
+                Specification = sut.Specification,
+                TruthProcessor = sut.TruthProcessor
+            };
+
+            var actual = sut.Equals(other);
+
+            Assert.True(actual);
+        }
+
+        [Fact]
+        public void SutDoesNotEqualAnonymousObject()
+        {
+            var sut = new ConditionalMortgageApplicationProcessor();
+            var anonymous = new object();
+
+            var actual = sut.Equals(anonymous);
+
+            Assert.False(actual);
+        }
+
+        [Fact]
+        public void SutDoesNotEqualOtherWithDifferentSpecification()
+        {
+            var sut = new ConditionalMortgageApplicationProcessor
+            {
+                Specification = new Mock<IMortgageApplicationSpecification>().Object,
+                TruthProcessor = new Mock<IMortgageApplicationProcessor>().Object
+            };
+            var other = new ConditionalMortgageApplicationProcessor
+            {
+                Specification = new Mock<IMortgageApplicationSpecification>().Object,
+                TruthProcessor = sut.TruthProcessor
+            };
+
+            var actual = sut.Equals(other);
+
+            Assert.False(actual);
+        }
+
+        [Fact]
+        public void SutDoesNotEqualOtherWithDifferentTruthProcessor()
+        {
+            var sut = new ConditionalMortgageApplicationProcessor
+            {
+                Specification = new Mock<IMortgageApplicationSpecification>().Object,
+                TruthProcessor = new Mock<IMortgageApplicationProcessor>().Object
+            };
+            var other = new ConditionalMortgageApplicationProcessor
+            {
+                Specification = sut.Specification,
+                TruthProcessor = new Mock<IMortgageApplicationProcessor>().Object
+            };
+
+            var actual = sut.Equals(other);
+
+            Assert.False(actual);
+        }
     }
 }

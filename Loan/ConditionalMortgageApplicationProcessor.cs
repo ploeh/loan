@@ -19,5 +19,22 @@ namespace Ploeh.Samples.Loan
 
             return Enumerable.Empty<IRendering>();
         }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as ConditionalMortgageApplicationProcessor;
+            if (other == null)
+                return base.Equals(obj);
+
+            return object.Equals(this.Specification, other.Specification)
+                && object.Equals(this.TruthProcessor, other.TruthProcessor);
+        }
+
+        public override int GetHashCode()
+        {
+            return
+                this.Specification.GetHashCode() ^
+                this.TruthProcessor.GetHashCode();
+        }
     }
 }
