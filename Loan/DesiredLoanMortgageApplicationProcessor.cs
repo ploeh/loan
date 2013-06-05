@@ -11,7 +11,19 @@ namespace Ploeh.Samples.Loan
     {
         public IEnumerable<IRendering> ProduceOffer(MortgageApplication application)
         {
-            yield break;
+            yield return new Heading2Rendering("Desired loan");
+
+            yield return new BoldRendering("Loan type:");
+            yield return new TextRendering(" " + application.DesiredLoanType);
+            yield return new LineBreakRendering();
+
+            yield return new BoldRendering("Term:");
+            yield return new TextRendering(" " + application.DesiredTerm + " years.");
+            yield return new LineBreakRendering();
+
+            yield return new BoldRendering("Frequency:");
+            yield return new TextRendering(" " + application.DesiredFrequency);
+            yield return new LineBreakRendering();
         }
     }
 }
