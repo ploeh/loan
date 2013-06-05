@@ -53,5 +53,62 @@ namespace Ploeh.Samples.Loan.UnitTest
             // Assert
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void SutEqualsOtherWithSameSpecifications()
+        {
+            // Arrange
+            var spec1 = new Mock<IMortgageApplicationSpecification>();
+            var spec2 = new Mock<IMortgageApplicationSpecification>();
+            var spec3 = new Mock<IMortgageApplicationSpecification>();
+
+            var sut = new AndMortgageApplicationSpecification();
+            sut.Specifications.Add(spec1.Object);
+            sut.Specifications.Add(spec2.Object);
+            sut.Specifications.Add(spec3.Object);
+
+            var other = new AndMortgageApplicationSpecification();
+            other.Specifications.Add(spec1.Object);
+            other.Specifications.Add(spec2.Object);
+            other.Specifications.Add(spec3.Object);
+
+            // Act
+            var actual = sut.Equals(other);
+
+            // Assert
+            Assert.True(actual);
+        }
+
+        [Fact]
+        public void SutDoesNotEqualAnonymousObject()
+        {
+            var sut = new AndMortgageApplicationSpecification();
+            var anonymous = new object();
+
+            var actual = sut.Equals(anonymous);
+
+            Assert.False(actual);
+        }
+
+        [Fact]
+        public void SutDoesNotEqualOtherWithDifferentSpecifications()
+        {
+            // Arrange
+            var sut = new AndMortgageApplicationSpecification();
+            sut.Specifications.Add(new Mock<IMortgageApplicationSpecification>().Object);
+            sut.Specifications.Add(new Mock<IMortgageApplicationSpecification>().Object);
+            sut.Specifications.Add(new Mock<IMortgageApplicationSpecification>().Object);
+
+            var other = new AndMortgageApplicationSpecification();
+            other.Specifications.Add(new Mock<IMortgageApplicationSpecification>().Object);
+            other.Specifications.Add(new Mock<IMortgageApplicationSpecification>().Object);
+            other.Specifications.Add(new Mock<IMortgageApplicationSpecification>().Object);
+
+            // Act
+            var actual = sut.Equals(other);
+
+            // Assert
+            Assert.False(actual);
+        }
     }
 }

@@ -19,5 +19,19 @@ namespace Ploeh.Samples.Loan
         {
             return this.Specifications.All(s => s.IsSatisfiedBy(application));
         }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as AndMortgageApplicationSpecification;
+            if (other == null)
+                return base.Equals(obj);
+
+            return this.Specifications.SequenceEqual(other.Specifications);
+        }
+
+        public override int GetHashCode()
+        {
+            return 667;
+        }
     }
 }
