@@ -48,6 +48,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdditionalApplicantsMortgageApplicationProcessorTests.cs" />
     <Compile Include="AnyAdditionalApplicantsSpecificationTests.cs" />
     <Compile Include="ApplicantProcessorTests.cs" />
     <Compile Include="ApplicationDetailsHeadlineMortgageApplicationProcessorTests.cs" />
