@@ -24,5 +24,15 @@ namespace Ploeh.Samples.Loan
                     yield return r;
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is AdditionalApplicantsMortgageApplicationProcessor;
+        }
+
+        public override int GetHashCode()
+        {
+            return 1957666;
+        }
     }
 }

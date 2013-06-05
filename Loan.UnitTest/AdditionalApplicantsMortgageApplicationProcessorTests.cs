@@ -126,5 +126,27 @@ namespace Ploeh.Samples.Loan.UnitTest
             .Concat(new ApplicantProcessor().ProduceRenderings(applicant2));
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void SutEqualsOther()
+        {
+            var sut = new AdditionalApplicantsMortgageApplicationProcessor();
+            var other = new AdditionalApplicantsMortgageApplicationProcessor();
+
+            var actual = sut.Equals(other);
+
+            Assert.True(actual);
+        }
+
+        [Fact]
+        public void SutDoesNotEqualAnonymousObject()
+        {
+            var sut = new AdditionalApplicantsMortgageApplicationProcessor();
+            var anonymous = new object();
+
+            var actual = sut.Equals(anonymous);
+
+            Assert.False(actual);
+        }
     }
 }
