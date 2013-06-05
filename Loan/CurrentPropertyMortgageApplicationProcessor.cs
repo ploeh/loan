@@ -11,7 +11,12 @@ namespace Ploeh.Samples.Loan
     {
         public IEnumerable<IRendering> ProduceOffer(MortgageApplication application)
         {
-            yield break;
+            yield return new TextRendering("Current property will be sold to finance new property.");
+            yield return new LineBreakRendering();
+
+            var p = new PropertyProcessor();
+            foreach (var r in p.ProduceRenderings(application.CurrentProperty))
+                yield return r;
         }
     }
 }
