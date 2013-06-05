@@ -32,12 +32,16 @@ namespace Ploeh.Samples.Loan
 
         public override bool Equals(object obj)
         {
-            return obj is PropertyProcessor;
+            var other = obj as PropertyProcessor;
+            if (other == null)
+                return base.Equals(obj);
+
+            return object.Equals(this.PriceText, other.PriceText);
         }
 
         public override int GetHashCode()
         {
-            return 999;
+            return this.PriceText.GetHashCode();
         }
     }
 }

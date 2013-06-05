@@ -60,15 +60,20 @@ namespace Ploeh.Samples.Loan.UnitTest
             Assert.Equal(expected, actual);
         }
 
-        [Fact]
-        public void SutEqualsOther()
+        [Theory]
+        [InlineData("Asking price", "Asking price", true)]
+        [InlineData("Asking price", "Estimated sales price", false)]
+        public void SutEqualsOtherReturnsCorrectResult(
+            string priceTextSut,
+            string priceTextOther,
+            bool expected)
         {
-            var sut = new PropertyProcessor();
-            var other = new PropertyProcessor();
+            var sut = new PropertyProcessor { PriceText = priceTextSut };
+            var other = new PropertyProcessor { PriceText = priceTextOther };
 
             var actual = sut.Equals(other);
 
-            Assert.True(actual);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
