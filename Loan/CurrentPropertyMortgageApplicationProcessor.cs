@@ -18,5 +18,15 @@ namespace Ploeh.Samples.Loan
             foreach (var r in p.ProduceRenderings(application.CurrentProperty))
                 yield return r;
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is CurrentPropertyMortgageApplicationProcessor;
+        }
+
+        public override int GetHashCode()
+        {
+            return 19576;
+        }
     }
 }
