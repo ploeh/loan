@@ -9,9 +9,15 @@ namespace Ploeh.Samples.Loan
 {
     public class ConditionalMortgageApplicationProcessor : IMortgageApplicationProcessor
     {
+        public IMortgageApplicationSpecification Specification;
+        public IMortgageApplicationProcessor TruthProcessor;
+
         public IEnumerable<IRendering> ProduceOffer(MortgageApplication application)
         {
-            yield break;
+            if (this.Specification.IsSatisfiedBy(application))
+                return this.TruthProcessor.ProduceOffer(application);
+
+            return Enumerable.Empty<IRendering>();
         }
     }
 }

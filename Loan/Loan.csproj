@@ -48,6 +48,7 @@
     <Compile Include="GreetingMortgageApplicationProcessor.cs" />
     <Compile Include="ILocationProvider.cs" />
     <Compile Include="IMortgageApplicationProcessor.cs" />
+    <Compile Include="IMortgageApplicationSpecification.cs" />
     <Compile Include="InterestOnlyOffer.cs" />
     <Compile Include="IOfferService.cs" />
     <Compile Include="ITimeProvider.cs" />
