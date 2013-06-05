@@ -63,6 +63,7 @@
     <Compile Include="GreetingMortgageApplicationProcessorTests.cs" />
     <Compile Include="PrimaryApplicantMortgageApplicationProcessorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyHeadlineMortgageApplicationProcessorTests.cs" />
     <Compile Include="PropertyProcessorTests.cs" />
     <Compile Include="SelfPaymentMortgageApplicationProcessorTests.cs" />
   </ItemGroup>
