@@ -56,6 +56,7 @@
     <Compile Include="CompositeMortgageApplicationProcessorTests.cs" />
     <Compile Include="ConditionalMortgageApplicationProcessorTests.cs" />
     <Compile Include="CurrentPropertyExistsSpecificationTests.cs" />
+    <Compile Include="CurrentPropertyMortgageApplicationProcessorTests.cs" />
     <Compile Include="CurrentPropertySoldAsFinancingMortgageApplicationSpecificationTests.cs" />
     <Compile Include="DateAndLocationMortgageApplicationProcessorTests.cs" />
     <Compile Include="FinancingHeadlineMortgageApplicationProcessorTests.cs" />
