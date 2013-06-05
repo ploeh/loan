@@ -11,7 +11,9 @@ namespace Ploeh.Samples.Loan
     {
         public IEnumerable<IRendering> ProduceOffer(MortgageApplication application)
         {
-            yield break;
+            yield return new BoldRendering("Self payment:");
+            yield return new TextRendering(" " + application.SelfPayment);
+            yield return new LineBreakRendering();
         }
     }
 }
