@@ -25,5 +25,15 @@ namespace Ploeh.Samples.Loan
             yield return new TextRendering(" " + application.DesiredFrequency);
             yield return new LineBreakRendering();
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is DesiredLoanMortgageApplicationProcessor;
+        }
+
+        public override int GetHashCode()
+        {
+            return 57384980;
+        }
     }
 }
