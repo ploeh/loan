@@ -12,5 +12,15 @@ namespace Ploeh.Samples.Loan.Render
         {
             return renderer.Render(this);
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is LineBreakRendering;
+        }
+
+        public override int GetHashCode()
+        {
+            return 1394;
+        }
     }
 }
