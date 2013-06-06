@@ -62,6 +62,7 @@
     <Compile Include="DesiredLoanMortgageApplicationProcessorTests.cs" />
     <Compile Include="DesiredLoanTypeMortgageApplicationSpecificationTests.cs" />
     <Compile Include="FinancingHeadlineMortgageApplicationProcessorTests.cs" />
+    <Compile Include="FixedRateAnnuityOfferMortgageApplicationProcessorTests.cs" />
     <Compile Include="GreetingMortgageApplicationProcessorTests.cs" />
     <Compile Include="OfferIntroductionMortgageApplicationProcessorTests.cs" />
     <Compile Include="PrimaryApplicantMortgageApplicationProcessorTests.cs" />

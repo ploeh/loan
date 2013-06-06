@@ -54,6 +54,7 @@
     <Compile Include="DesiredLoanMortgageApplicationProcessor.cs" />
     <Compile Include="DesiredLoanTypeMortgageApplicationSpecification.cs" />
     <Compile Include="FinancingHeadlineMortgageApplicationProcessor.cs" />
+    <Compile Include="FixedRateAnnuityOfferMortgageApplicationProcessor.cs" />
     <Compile Include="GreetingMortgageApplicationProcessor.cs" />
     <Compile Include="ILocationProvider.cs" />
     <Compile Include="IMortgageApplicationProcessor.cs" />
