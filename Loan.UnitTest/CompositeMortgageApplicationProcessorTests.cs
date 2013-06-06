@@ -48,10 +48,10 @@ namespace Ploeh.Samples.Loan.UnitTest
             node3.Setup(n => n.ProduceOffer(application))
                 .Returns(new[] { r7, r8, r9 });
 
-            var sut = new CompositeMortgageApplicationProcessor();
-            sut.Nodes.Add(node1.Object);
-            sut.Nodes.Add(node2.Object);
-            sut.Nodes.Add(node3.Object);
+            var sut = new CompositeMortgageApplicationProcessor
+            {
+                Nodes = new[] { node1.Object, node2.Object, node3.Object }
+            };
 
             // Act
             var actual = sut.ProduceOffer(application);
@@ -73,11 +73,15 @@ namespace Ploeh.Samples.Loan.UnitTest
                 moqRepo.Create<IMortgageApplicationProcessor>().Object
             };
 
-            var sut = new CompositeMortgageApplicationProcessor();
-            nodes.ForEach(sut.Nodes.Add);
+            var sut = new CompositeMortgageApplicationProcessor
+            {
+                Nodes = nodes.ToArray()
+            };
 
-            var other = new CompositeMortgageApplicationProcessor();
-            nodes.ForEach(other.Nodes.Add);
+            var other = new CompositeMortgageApplicationProcessor
+            {
+                Nodes = nodes.ToArray()
+            };
 
             // Act
             var actual = sut.Equals(other);
@@ -103,15 +107,25 @@ namespace Ploeh.Samples.Loan.UnitTest
             // Arrange
             var moqRepo = new MockRepository(MockBehavior.Default);
 
-            var sut = new CompositeMortgageApplicationProcessor();
-            sut.Nodes.Add(moqRepo.Create<IMortgageApplicationProcessor>().Object);
-            sut.Nodes.Add(moqRepo.Create<IMortgageApplicationProcessor>().Object);
-            sut.Nodes.Add(moqRepo.Create<IMortgageApplicationProcessor>().Object);
+            var sut = new CompositeMortgageApplicationProcessor
+            {
+                Nodes = new[]
+                {
+                    moqRepo.Create<IMortgageApplicationProcessor>().Object,
+                    moqRepo.Create<IMortgageApplicationProcessor>().Object,
+                    moqRepo.Create<IMortgageApplicationProcessor>().Object
+                }
+            };
 
-            var other = new CompositeMortgageApplicationProcessor();
-            other.Nodes.Add(moqRepo.Create<IMortgageApplicationProcessor>().Object);
-            other.Nodes.Add(moqRepo.Create<IMortgageApplicationProcessor>().Object);
-            other.Nodes.Add(moqRepo.Create<IMortgageApplicationProcessor>().Object);
+            var other = new CompositeMortgageApplicationProcessor
+            {
+                Nodes = new[]
+                {
+                    moqRepo.Create<IMortgageApplicationProcessor>().Object,
+                    moqRepo.Create<IMortgageApplicationProcessor>().Object,
+                    moqRepo.Create<IMortgageApplicationProcessor>().Object
+                }
+            };
 
             // Act
             var actual = sut.Equals(other);

@@ -9,12 +9,7 @@ namespace Ploeh.Samples.Loan
 {
     public class CompositeMortgageApplicationProcessor : IMortgageApplicationProcessor
     {
-        public readonly IList<IMortgageApplicationProcessor> Nodes;
-
-        public CompositeMortgageApplicationProcessor()
-        {
-            this.Nodes = new List<IMortgageApplicationProcessor>();
-        }
+        public IMortgageApplicationProcessor[] Nodes;
 
         public IEnumerable<IRendering> ProduceOffer(MortgageApplication application)
         {
