@@ -20,11 +20,11 @@ namespace Ploeh.Samples.Loan.UnitTest
         }
 
         [Theory]
-        [InlineData(true , true , true , true )]
-        [InlineData(false, true , true , false)]
-        [InlineData(true , false, true , false)]
-        [InlineData(true , true , false, false)]
-        [InlineData(true , true , false, false)]
+        [InlineData(true, true, true, true)]
+        [InlineData(false, true, true, false)]
+        [InlineData(true, false, true, false)]
+        [InlineData(true, true, false, false)]
+        [InlineData(true, true, false, false)]
         [InlineData(false, false, false, false)]
         public void IsSatisfiedByReturnsCorrectResult(
             bool b1,
@@ -42,10 +42,10 @@ namespace Ploeh.Samples.Loan.UnitTest
             spec2.Setup(s => s.IsSatisfiedBy(application)).Returns(b2);
             spec3.Setup(s => s.IsSatisfiedBy(application)).Returns(b3);
 
-            var sut = new AndMortgageApplicationSpecification();
-            sut.Specifications.Add(spec1.Object);
-            sut.Specifications.Add(spec2.Object);
-            sut.Specifications.Add(spec3.Object);
+            var sut = new AndMortgageApplicationSpecification
+            {
+                Specifications = new[] { spec1.Object, spec2.Object, spec3.Object }
+            };
 
             // Act
             var actual = sut.IsSatisfiedBy(application);
@@ -62,15 +62,15 @@ namespace Ploeh.Samples.Loan.UnitTest
             var spec2 = new Mock<IMortgageApplicationSpecification>();
             var spec3 = new Mock<IMortgageApplicationSpecification>();
 
-            var sut = new AndMortgageApplicationSpecification();
-            sut.Specifications.Add(spec1.Object);
-            sut.Specifications.Add(spec2.Object);
-            sut.Specifications.Add(spec3.Object);
+            var sut = new AndMortgageApplicationSpecification
+            {
+                Specifications = new[] { spec1.Object, spec2.Object, spec3.Object }
+            };
 
-            var other = new AndMortgageApplicationSpecification();
-            other.Specifications.Add(spec1.Object);
-            other.Specifications.Add(spec2.Object);
-            other.Specifications.Add(spec3.Object);
+            var other = new AndMortgageApplicationSpecification
+            {
+                Specifications = new[] { spec1.Object, spec2.Object, spec3.Object }
+            };
 
             // Act
             var actual = sut.Equals(other);
@@ -94,15 +94,25 @@ namespace Ploeh.Samples.Loan.UnitTest
         public void SutDoesNotEqualOtherWithDifferentSpecifications()
         {
             // Arrange
-            var sut = new AndMortgageApplicationSpecification();
-            sut.Specifications.Add(new Mock<IMortgageApplicationSpecification>().Object);
-            sut.Specifications.Add(new Mock<IMortgageApplicationSpecification>().Object);
-            sut.Specifications.Add(new Mock<IMortgageApplicationSpecification>().Object);
+            var sut = new AndMortgageApplicationSpecification
+            {
+                Specifications = new[]
+                {
+                    new Mock<IMortgageApplicationSpecification>().Object,
+                    new Mock<IMortgageApplicationSpecification>().Object,
+                    new Mock<IMortgageApplicationSpecification>().Object
+                }
+            };
 
-            var other = new AndMortgageApplicationSpecification();
-            other.Specifications.Add(new Mock<IMortgageApplicationSpecification>().Object);
-            other.Specifications.Add(new Mock<IMortgageApplicationSpecification>().Object);
-            other.Specifications.Add(new Mock<IMortgageApplicationSpecification>().Object);
+            var other = new AndMortgageApplicationSpecification
+            {
+                Specifications = new[]
+                {
+                    new Mock<IMortgageApplicationSpecification>().Object,
+                    new Mock<IMortgageApplicationSpecification>().Object,
+                    new Mock<IMortgageApplicationSpecification>().Object
+                }
+            };
 
             // Act
             var actual = sut.Equals(other);
