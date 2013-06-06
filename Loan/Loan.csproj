@@ -61,6 +61,7 @@
     <Compile Include="IMortgageApplicationProcessor.cs" />
     <Compile Include="IMortgageApplicationSpecification.cs" />
     <Compile Include="InterestOnlyOffer.cs" />
+    <Compile Include="InterestOnlyOfferMortgageApplicationProcessor.cs" />
     <Compile Include="IOfferService.cs" />
     <Compile Include="ITimeProvider.cs" />
     <Compile Include="MortgageApplicationProcessor.cs" />
