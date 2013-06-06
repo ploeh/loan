@@ -13,7 +13,7 @@ namespace Ploeh.Samples.Loan
         {
             return new PropertyProcessor
             {
-                PriceText = "Estimated sales price"
+                PriceText = "Asking price"
             }
             .ProduceRenderings(application.Property);
         }

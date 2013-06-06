@@ -49,7 +49,7 @@ namespace Ploeh.Samples.Loan.UnitTest
             var expected =
                 new PropertyProcessor
                 {
-                    PriceText = "Estimated sales price"
+                    PriceText = "Asking price"
                 }
                 .ProduceRenderings(application.Property);
             Assert.Equal(expected, actual);
