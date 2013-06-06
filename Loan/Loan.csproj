@@ -62,6 +62,7 @@
     <Compile Include="ITimeProvider.cs" />
     <Compile Include="MortgageApplicationProcessor.cs" />
     <Compile Include="FixedRateAnnuityOffer.cs" />
+    <Compile Include="OfferIntroductionMortgageApplicationProcessor.cs" />
     <Compile Include="PrimaryApplicantMortgageApplicationProcessor.cs" />
     <Compile Include="PropertyHeadlineMortgageApplicationProcessor.cs" />
     <Compile Include="PropertyMortgageApplicationProcessor.cs" />
