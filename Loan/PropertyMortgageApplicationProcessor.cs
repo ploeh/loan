@@ -11,7 +11,11 @@ namespace Ploeh.Samples.Loan
     {
         public IEnumerable<IRendering> ProduceOffer(MortgageApplication application)
         {
-            yield break;
+            return new PropertyProcessor
+            {
+                PriceText = "Estimated sales price"
+            }
+            .ProduceRenderings(application.Property);
         }
     }
 }
