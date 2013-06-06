@@ -29,7 +29,7 @@ namespace Ploeh.Samples.Loan
                     new ConditionalMortgageApplicationProcessor
                     {
                         Specification = new AnyAdditionalApplicantsSpecification(),
-                        TruthProcessor = new PrimaryApplicantMortgageApplicationProcessor()
+                        TruthProcessor = new AdditionalApplicantsMortgageApplicationProcessor()
                     },
                     new FinancingHeadlineMortgageApplicationProcessor(),
                     new SelfPaymentMortgageApplicationProcessor(),
