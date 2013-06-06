@@ -60,6 +60,7 @@
     <Compile Include="CurrentPropertySoldAsFinancingMortgageApplicationSpecificationTests.cs" />
     <Compile Include="DateAndLocationMortgageApplicationProcessorTests.cs" />
     <Compile Include="DesiredLoanMortgageApplicationProcessorTests.cs" />
+    <Compile Include="DesiredLoanTypeMortgageApplicationSpecificationTests.cs" />
     <Compile Include="FinancingHeadlineMortgageApplicationProcessorTests.cs" />
     <Compile Include="GreetingMortgageApplicationProcessorTests.cs" />
     <Compile Include="OfferIntroductionMortgageApplicationProcessorTests.cs" />
