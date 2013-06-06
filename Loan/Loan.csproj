@@ -64,6 +64,7 @@
     <Compile Include="FixedRateAnnuityOffer.cs" />
     <Compile Include="PrimaryApplicantMortgageApplicationProcessor.cs" />
     <Compile Include="PropertyHeadlineMortgageApplicationProcessor.cs" />
+    <Compile Include="PropertyMortgageApplicationProcessor.cs" />
     <Compile Include="PropertyProcessor.cs" />
     <Compile Include="Render\BoldRendering.cs" />
     <Compile Include="Render\BulletRendering.cs" />
