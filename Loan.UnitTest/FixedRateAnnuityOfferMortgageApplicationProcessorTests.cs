@@ -55,5 +55,50 @@ namespace Ploeh.Samples.Loan.UnitTest
             };
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void SutEqualsOtherWithSameDependencies()
+        {
+            var sut = new FixedRateAnnuityOfferMortgageApplicationProcessor
+            {
+                OfferService = new Mock<IOfferService>().Object
+            };
+            var other = new FixedRateAnnuityOfferMortgageApplicationProcessor
+            {
+                OfferService = sut.OfferService
+            };
+
+            var actual = sut.Equals(other);
+
+            Assert.True(actual);
+        }
+
+        [Fact]
+        public void SutDoesNotEqualAnonymousObject()
+        {
+            var sut = new FixedRateAnnuityOfferMortgageApplicationProcessor();
+            var anonymous = new object();
+
+            var actual = sut.Equals(anonymous);
+
+            Assert.False(actual);
+        }
+
+        [Fact]
+        public void SutDoesNotEqualOtherWithDifferentDependencies()
+        {
+            var sut = new FixedRateAnnuityOfferMortgageApplicationProcessor
+            {
+                OfferService = new Mock<IOfferService>().Object
+            };
+            var other = new FixedRateAnnuityOfferMortgageApplicationProcessor
+            {
+                OfferService = new Mock<IOfferService>().Object
+            };
+
+            var actual = sut.Equals(other);
+
+            Assert.False(actual);
+        }
     }
 }

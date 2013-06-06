@@ -26,5 +26,19 @@ namespace Ploeh.Samples.Loan
             yield return new TextRendering(" " + offer.Term.ToString("D"));
             yield return new LineBreakRendering();
         }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as FixedRateAnnuityOfferMortgageApplicationProcessor;
+            if (other == null)
+                return base.Equals(obj);
+
+            return object.Equals(this.OfferService, other.OfferService);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.OfferService.GetHashCode();
+        }
     }
 }
