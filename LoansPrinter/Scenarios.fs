@@ -1,18 +1,42 @@
 ﻿module Ploeh.Samples.Loan.Scenarios
 
+open System.IO
+open System.Runtime.Serialization
+open System.Xml
 open Ploeh.Samples.Loan
 open Ploeh.Samples.Loan.DataCollection
 open Ploeh.Samples.Loan.Render
 open Ploeh.Samples.Loan.TestDoubles
 
 let processor =
-    let composer =
-        MortgageApplicationProcessorComposer(
-            LocationProvider = StubLocationProvider(),
-            TimeProvider = RealTimeProvider(),
-            OfferService = FakeOfferService())
+    let serializer = 
+        DataContractSerializer(
+            typeof<CompositeMortgageApplicationProcessor>,
+            [
+                typeof<StubLocationProvider>;
+                typeof<RealTimeProvider>;
+                typeof<FakeOfferService>;                
+            ] |> 
+            Seq.append (typeof<IMortgageApplicationProcessor>.Assembly.GetExportedTypes() |>
+            Seq.filter (fun t -> t.IsDefined(typeof<DataContractAttribute>, false)) ))
+    
+    let graphPath = Path.GetFullPath("graph.xml")
+    if File.Exists(graphPath)
+    then
+        use xr = XmlReader.Create(graphPath)
+        serializer.ReadObject(xr) :?> IMortgageApplicationProcessor
+    else
+        let composer =
+            MortgageApplicationProcessorComposer(
+                LocationProvider = StubLocationProvider(),
+                TimeProvider = RealTimeProvider(),
+                OfferService = FakeOfferService())
+        let g = composer.Compose()
 
-    composer.Compose()
+        use xw = XmlWriter.Create(graphPath)
+        serializer.WriteObject(xw, g)
+
+        g
 
 let renderer = MarkdownRenderer()
 
