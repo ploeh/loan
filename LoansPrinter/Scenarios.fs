@@ -6,10 +6,13 @@ open Ploeh.Samples.Loan.Render
 open Ploeh.Samples.Loan.TestDoubles
 
 let processor =
-    MortgageApplicationProcessor(
-        StubLocationProvider(),
-        RealTimeProvider(),
-        FakeOfferService())
+    let composer =
+        MortgageApplicationProcessorComposer(
+            LocationProvider = StubLocationProvider(),
+            TimeProvider = RealTimeProvider(),
+            OfferService = FakeOfferService())
+
+    composer.Compose()
 
 let renderer = MarkdownRenderer()
 
