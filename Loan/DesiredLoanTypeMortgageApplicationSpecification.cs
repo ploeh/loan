@@ -6,7 +6,7 @@ using Ploeh.Samples.Loan.DataCollection;
 
 namespace Ploeh.Samples.Loan
 {
-    public class DesiredLoanTypeMortgageApplicationSpecification : 
+    public class DesiredLoanTypeMortgageApplicationSpecification :
         IMortgageApplicationSpecification
     {
         public LoanType MatchingLoanType;
@@ -16,6 +16,20 @@ namespace Ploeh.Samples.Loan
             return object.Equals(
                 this.MatchingLoanType,
                 application.DesiredLoanType);
+        }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as DesiredLoanTypeMortgageApplicationSpecification;
+            if (other == null)
+                return base.Equals(obj);
+
+            return object.Equals(this.MatchingLoanType, other.MatchingLoanType);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.MatchingLoanType.GetHashCode();
         }
     }
 }
