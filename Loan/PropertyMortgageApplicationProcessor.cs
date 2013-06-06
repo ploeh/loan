@@ -17,5 +17,15 @@ namespace Ploeh.Samples.Loan
             }
             .ProduceRenderings(application.Property);
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is PropertyMortgageApplicationProcessor;
+        }
+
+        public override int GetHashCode()
+        {
+            return 88923;
+        }
     }
 }
