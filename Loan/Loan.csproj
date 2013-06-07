@@ -73,6 +73,7 @@
     <Compile Include="PropertyHeadlineMortgageApplicationProcessor.cs" />
     <Compile Include="PropertyMortgageApplicationProcessor.cs" />
     <Compile Include="PropertyProcessor.cs" />
+    <Compile Include="RealtyUpsellMortgageApplicationProcessor.cs" />
     <Compile Include="Render\BoldRendering.cs" />
     <Compile Include="Render\BulletRendering.cs" />
     <Compile Include="DataCollection\Address.cs" />

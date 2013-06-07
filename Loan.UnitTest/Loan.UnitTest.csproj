@@ -73,6 +73,7 @@
     <Compile Include="PropertyHeadlineMortgageApplicationProcessorTests.cs" />
     <Compile Include="PropertyMortgageApplicationProcessorTests.cs" />
     <Compile Include="PropertyProcessorTests.cs" />
+    <Compile Include="RealtyUpsellMortgageApplicationProcessorTests.cs" />
     <Compile Include="SelfPaymentMortgageApplicationProcessorTests.cs" />
   </ItemGroup>
   <ItemGroup>
