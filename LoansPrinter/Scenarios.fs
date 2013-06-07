@@ -33,7 +33,7 @@ let processor =
                 OfferService = FakeOfferService())
         let g = composer.Compose()
 
-        use xw = XmlWriter.Create(graphPath)
+        use xw = XmlWriter.Create(graphPath, XmlWriterSettings(Indent = true))
         serializer.WriteObject(xw, g)
 
         g
